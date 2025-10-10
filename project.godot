@@ -14,6 +14,13 @@ config/name="Godot Wild Jam 86"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+MathS="*res://Library/Autoload/MathS.gd"
+ParticleSpawner="*res://Library/Autoload/ParticleSpawner.gd"
+SoundSpawner="*res://Library/Autoload/SoundSpawner.gd"
+TransitionManager="*res://Library/Autoload/TransitionManager.gd"
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
