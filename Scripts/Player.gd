@@ -1,9 +1,6 @@
 class_name Player
 extends RigidBody2D
 
-func _enter_tree():
-	Level.player=self
-
 var inputAxis=Vector2.ZERO
 var movementAxis=Vector2.ZERO
 
@@ -23,6 +20,18 @@ var movementAxis=Vector2.ZERO
 @export var maxLungeCharge : float = 1
 
 var _curLungeCharge = -1
+
+@export var attackBox : Area2D
+var _hitList : Array[Enemy] # to prevent enemies from getting hit twice in a single lunge
+
+func _enter_tree():
+	Level.player=self
+	attackBox.body_entered.connect(_onAttackBoxBodyEntered)
+
+func _ready():
+	pass
+
+
 
 func _process(delta):
 	inputAxis = Vector2.ZERO
@@ -94,6 +103,7 @@ func _physics_process(delta):
 
 		linear_velocity += finalStep
 	
+	attackBox.monitoring=isLunging()
 
 
 	if isChargingLunge():
@@ -103,6 +113,7 @@ func _physics_process(delta):
 			EV_LungeFullyCharged.emit()
 
 func _lungeBegin():
+	_hitList.clear()
 	_curLungeCharge=0
 	EV_LungeBegin.emit()
 func _lungeRelease():
@@ -131,3 +142,11 @@ func die():
 	EV_death.emit()
 func isDead():
 	return _dead
+
+func _onAttackBoxBodyEntered(body):
+	pass
+	var enemy : Enemy = body
+	if _hitList.has(enemy):
+		return
+	enemy.hit(linear_velocity)
+	_hitList.append(enemy)

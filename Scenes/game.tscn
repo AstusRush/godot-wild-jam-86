@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://c2fketo4xojpn"]
+[gd_scene load_steps=10 format=3 uid="uid://c2fketo4xojpn"]
 
 [ext_resource type="PackedScene" uid="uid://cg7pjf54rwrq1" path="res://Scenes/player.tscn" id="1_ebmjs"]
 [ext_resource type="Script" uid="uid://dshkgbsarahv5" path="res://Scripts/GameCamera.gd" id="1_wowpa"]
@@ -6,6 +6,13 @@
 [ext_resource type="Script" uid="uid://ce6p4aodr01aw" path="res://Scripts/Player.gd" id="2_wrm1d"]
 [ext_resource type="Script" uid="uid://mq7doga6rtdm" path="res://Scripts/DeathScreen.gd" id="4_3dryh"]
 [ext_resource type="Texture2D" uid="uid://bpwrtt0obc77l" path="res://icon.svg" id="6_i6g32"]
+[ext_resource type="PackedScene" uid="uid://cy8xoy4p76uee" path="res://Scenes/enemy.tscn" id="7_1l0tm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1l0tm"]
+radius = 66.4906
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i6g32"]
+size = Vector2(374, 372)
 
 [node name="Game" type="Node2D"]
 
@@ -155,9 +162,11 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "MENU"
 
-[node name="Player" parent="." instance=ExtResource("1_ebmjs")]
+[node name="Player" parent="." node_paths=PackedStringArray("attackBox") instance=ExtResource("1_ebmjs")]
+collision_mask = 5
+lock_rotation = true
 script = ExtResource("2_wrm1d")
-baseAccel = 1000.0
+baseAccel = 1400.0
 baseDrag = 1.5
 baseDecel = 3000.0
 jitterSnapThreshold = 50
@@ -168,9 +177,43 @@ lungeDrag = 5000
 lungeAccel = 400
 maxLungeCounterMod = 3.5
 maxLungeCharge = 1.5
+attackBox = NodePath("AttackBox")
+
+[node name="AttackBox" type="Area2D" parent="Player"]
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/AttackBox"]
+shape = SubResource("CircleShape2D_1l0tm")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0.28235295, 0.11372549, 1, 0.29803923)
 z_index = -225
 scale = Vector2(20, 20)
 texture = ExtResource("6_i6g32")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(300, -249)
+collision_layer = 4
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+position = Vector2(0, -8)
+scale = Vector2(3, 3.0234375)
+texture = ExtResource("6_i6g32")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-1, -7)
+shape = SubResource("RectangleShape2D_i6g32")
+
+[node name="Enemy" parent="." instance=ExtResource("7_1l0tm")]
+position = Vector2(283, -19)
+
+[node name="Enemy2" parent="." instance=ExtResource("7_1l0tm")]
+position = Vector2(171, 66)
+
+[node name="Enemy3" parent="." instance=ExtResource("7_1l0tm")]
+position = Vector2(438, 82)
+
+[node name="Enemy4" parent="." instance=ExtResource("7_1l0tm")]
+position = Vector2(280, 405)
