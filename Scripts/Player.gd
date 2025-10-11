@@ -22,6 +22,7 @@ var movementAxis=Vector2.ZERO
 var _curLungeCharge = -1
 
 @export var attackBox : Area2D
+@export var paused : Paused
 var _hitList : Array[Enemy] # to prevent enemies from getting hit twice in a single lunge
 
 func _enter_tree():
@@ -49,7 +50,7 @@ func _process(delta):
 		movementAxis=Vector2.ZERO
 
 	if Input.is_action_pressed("Lunge"):
-		if not isChargingLunge():
+		if not isChargingLunge() and not isLunging():
 			_lungeBegin()
 	elif Input.is_action_just_released("Lunge"):
 		if isChargingLunge():
@@ -144,9 +145,12 @@ func isDead():
 	return _dead
 
 func _onAttackBoxBodyEntered(body):
-	pass
 	var enemy : Enemy = body
 	if _hitList.has(enemy):
 		return
+	
+	if not enemy.isDead():
+		Level.camera.screenshake()
+		paused.hitstop()
 	enemy.hit(linear_velocity)
 	_hitList.append(enemy)

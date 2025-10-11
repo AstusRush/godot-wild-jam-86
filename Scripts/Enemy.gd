@@ -22,5 +22,9 @@ func hit(impactForce : Vector2):
 		modulate.g=0
 		linear_damp=DeadDampening
 		collision_mask=CollisionMaskDead
-	else:
 		_dead=true
+	else:
+		pass
+
+func isDead():
+	return _dead

@@ -20,6 +20,10 @@ size = Vector2(374, 372)
 script = ExtResource("1_wowpa")
 _mouseOffsetMod = 0.2
 _swaySpeed = 12.0
+_screenshakeStrength = 17
+_screenshakeEase = 1
+_zoomReturnSpeed = 0.3
+_zoomModFullCharged = 0.9
 
 [node name="Paused" type="Control" parent="Camera2D" node_paths=PackedStringArray("_btnContinue", "_btnRestart", "_btnReturn")]
 process_mode = 3
@@ -162,7 +166,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "MENU"
 
-[node name="Player" parent="." node_paths=PackedStringArray("attackBox") instance=ExtResource("1_ebmjs")]
+[node name="Player" parent="." node_paths=PackedStringArray("attackBox", "paused") instance=ExtResource("1_ebmjs")]
 collision_mask = 5
 lock_rotation = true
 script = ExtResource("2_wrm1d")
@@ -176,8 +180,9 @@ lungeSpeedMax = 3200
 lungeDrag = 5000
 lungeAccel = 400
 maxLungeCounterMod = 3.5
-maxLungeCharge = 1.5
+maxLungeCharge = 0.8
 attackBox = NodePath("AttackBox")
+paused = NodePath("../Camera2D/Paused")
 
 [node name="AttackBox" type="Area2D" parent="Player"]
 collision_layer = 0
@@ -217,3 +222,27 @@ position = Vector2(438, 82)
 
 [node name="Enemy4" parent="." instance=ExtResource("7_1l0tm")]
 position = Vector2(280, 405)
+
+[node name="Enemy5" parent="." instance=ExtResource("7_1l0tm")]
+position = Vector2(-300, -446)
+
+[node name="Enemy6" parent="." instance=ExtResource("7_1l0tm")]
+position = Vector2(-412, -361)
+
+[node name="Enemy7" parent="." instance=ExtResource("7_1l0tm")]
+position = Vector2(-145, -345)
+
+[node name="Enemy8" parent="." instance=ExtResource("7_1l0tm")]
+position = Vector2(-303, -22)
+
+[node name="Enemy9" parent="." instance=ExtResource("7_1l0tm")]
+position = Vector2(-807, 79)
+
+[node name="Enemy10" parent="." instance=ExtResource("7_1l0tm")]
+position = Vector2(-919, 164)
+
+[node name="Enemy11" parent="." instance=ExtResource("7_1l0tm")]
+position = Vector2(-652, 180)
+
+[node name="Enemy12" parent="." instance=ExtResource("7_1l0tm")]
+position = Vector2(-810, 503)

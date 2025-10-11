@@ -1,3 +1,4 @@
+class_name Paused
 extends Control
 
 @export var _btnContinue : Button
@@ -44,3 +45,12 @@ func _process(delta):
 		else: #is unpaused->paused
 			visible=true
 			get_tree().paused=true
+
+@export var hitstopDuration : float = 0.04
+func hitstop():
+	Engine.time_scale=0
+	get_tree().create_timer(hitstopDuration,true,false,true).timeout.connect(_onTimeout)
+	
+
+func _onTimeout():
+	Engine.time_scale=1

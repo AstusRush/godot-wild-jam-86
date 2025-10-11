@@ -4,9 +4,17 @@ extends Camera2D
 var _desiredPos : Vector2
 @export var _mouseOffsetMod : float = 1
 @export var _swaySpeed : float = 5
+@export var _screenshakeDuration : float = 0.15
+@export var _screenshakeStrength : int = 6
+@export var _screenshakeEase : MathS.EasingMethod
+var  _screenshakeRemaining : float = 0
 
 func _enter_tree():
 	Level.camera=self
+
+@export var _zoomReturnSpeed : float = 0.5
+@export var _zoomModNormal :float = 1
+@export var _zoomModFullCharged : float = 0.8
 
 func _process(delta):
 	if Level.player.isDead():
@@ -22,5 +30,23 @@ func _process(delta):
 	
 	position+=(_desiredPos-position) * _swaySpeed * delta
 
+
+
+	if Level.player.isChargingLunge(): #zoom out
+		zoom.x =min(zoom.x,lerp(_zoomModNormal,_zoomModFullCharged,Level.player.calcChargeP()))
+		zoom.y=zoom.x
+	elif not Level.player.isLunging(): #return to normal zoom
+		zoom.x=min(_zoomModNormal, zoom.x+delta*_zoomReturnSpeed)
+		zoom.y=zoom.x
+
+
+	var shakeMag = MathS.Ease(_screenshakeRemaining/_screenshakeDuration, _screenshakeEase)*_screenshakeStrength
+	shakeMag/=zoom.x # makes screenshake consistent for different zoom values
+	position+=MathS.RandDir2()*shakeMag
+	_screenshakeRemaining = max(_screenshakeRemaining-delta, 0)
+
 func getMouseDir():
 	return (get_global_mouse_position()-position).normalized()
+
+func screenshake():
+	_screenshakeRemaining=_screenshakeDuration
