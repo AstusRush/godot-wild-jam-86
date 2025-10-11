@@ -6,7 +6,7 @@
 radius = 58.21512
 
 [node name="Player" type="RigidBody2D"]
-gravity_scale = 0.2
+gravity_scale = 0.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.755, 0.755)

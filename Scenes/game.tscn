@@ -1,19 +1,19 @@
-[gd_scene load_steps=5 format=3 uid="uid://c2fketo4xojpn"]
+[gd_scene load_steps=7 format=3 uid="uid://c2fketo4xojpn"]
 
 [ext_resource type="PackedScene" uid="uid://cg7pjf54rwrq1" path="res://Scenes/player.tscn" id="1_ebmjs"]
+[ext_resource type="Script" uid="uid://dshkgbsarahv5" path="res://Scripts/GameCamera.gd" id="1_wowpa"]
 [ext_resource type="Script" uid="uid://cgc4iakrvjk3m" path="res://Scripts/Paused.gd" id="2_qxrlw"]
 [ext_resource type="Script" uid="uid://ce6p4aodr01aw" path="res://Scripts/Player.gd" id="2_wrm1d"]
 [ext_resource type="Script" uid="uid://mq7doga6rtdm" path="res://Scripts/DeathScreen.gd" id="4_3dryh"]
+[ext_resource type="Texture2D" uid="uid://bpwrtt0obc77l" path="res://icon.svg" id="6_i6g32"]
 
 [node name="Game" type="Node2D"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
+script = ExtResource("1_wowpa")
+_mouseOffsetMod = 0.2
 
-[node name="Player" parent="." instance=ExtResource("1_ebmjs")]
-position = Vector2(274, -2)
-script = ExtResource("2_wrm1d")
-
-[node name="Paused" type="Control" parent="." node_paths=PackedStringArray("_btnContinue", "_btnRestart", "_btnReturn")]
+[node name="Paused" type="Control" parent="Camera2D" node_paths=PackedStringArray("_btnContinue", "_btnRestart", "_btnReturn")]
 process_mode = 3
 visible = false
 layout_mode = 3
@@ -27,7 +27,7 @@ _btnContinue = NodePath("VBoxContainer/btnContinue")
 _btnRestart = NodePath("VBoxContainer/btnRestart")
 _btnReturn = NodePath("VBoxContainer/btnReturn")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Paused"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Camera2D/Paused"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -42,22 +42,22 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 20
 
-[node name="btnContinue" type="Button" parent="Paused/VBoxContainer"]
+[node name="btnContinue" type="Button" parent="Camera2D/Paused/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
 text = "CONTINUE"
 
-[node name="btnRestart" type="Button" parent="Paused/VBoxContainer"]
+[node name="btnRestart" type="Button" parent="Camera2D/Paused/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
 text = "RESTART"
 
-[node name="btnReturn" type="Button" parent="Paused/VBoxContainer"]
+[node name="btnReturn" type="Button" parent="Camera2D/Paused/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 48
 text = "MENU"
 
-[node name="DeathScreen" type="Control" parent="." node_paths=PackedStringArray("_deathMessageLabel", "_statTimeAlive", "_statKillCount", "_retryPromptLabel", "_btnRetry", "_btnReturn")]
+[node name="DeathScreen" type="Control" parent="Camera2D" node_paths=PackedStringArray("_deathMessageLabel", "_statTimeAlive", "_statKillCount", "_retryPromptLabel", "_btnRetry", "_btnReturn")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -72,7 +72,7 @@ _retryPromptLabel = NodePath("RetryPrompt")
 _btnRetry = NodePath("HBoxContainer/BtnRetry")
 _btnReturn = NodePath("HBoxContainer/BtnReturn")
 
-[node name="VBoxStats" type="VBoxContainer" parent="DeathScreen"]
+[node name="VBoxStats" type="VBoxContainer" parent="Camera2D/DeathScreen"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -86,19 +86,19 @@ offset_bottom = 90.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="timeAlive" type="RichTextLabel" parent="DeathScreen/VBoxStats"]
+[node name="timeAlive" type="RichTextLabel" parent="Camera2D/DeathScreen/VBoxStats"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/normal_font_size = 40
 text = "TIME SURVIVED"
 
-[node name="killCount" type="RichTextLabel" parent="DeathScreen/VBoxStats"]
+[node name="killCount" type="RichTextLabel" parent="Camera2D/DeathScreen/VBoxStats"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_font_sizes/normal_font_size = 40
 text = "KILL COUNT"
 
-[node name="DeathMessage" type="RichTextLabel" parent="DeathScreen"]
+[node name="DeathMessage" type="RichTextLabel" parent="Camera2D/DeathScreen"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -115,7 +115,7 @@ theme_override_font_sizes/normal_font_size = 80
 bbcode_enabled = true
 text = "[center]DEAD"
 
-[node name="RetryPrompt" type="RichTextLabel" parent="DeathScreen"]
+[node name="RetryPrompt" type="RichTextLabel" parent="Camera2D/DeathScreen"]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -132,7 +132,7 @@ theme_override_font_sizes/normal_font_size = 70
 bbcode_enabled = true
 text = "[center]Again?"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="DeathScreen"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Camera2D/DeathScreen"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -144,12 +144,21 @@ offset_bottom = 303.0
 grow_horizontal = 2
 theme_override_constants/separation = 54
 
-[node name="BtnRetry" type="Button" parent="DeathScreen/HBoxContainer"]
+[node name="BtnRetry" type="Button" parent="Camera2D/DeathScreen/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "AGAIN!"
 
-[node name="BtnReturn" type="Button" parent="DeathScreen/HBoxContainer"]
+[node name="BtnReturn" type="Button" parent="Camera2D/DeathScreen/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "MENU"
+
+[node name="Player" parent="." instance=ExtResource("1_ebmjs")]
+script = ExtResource("2_wrm1d")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.28235295, 0.11372549, 1, 0.29803923)
+z_index = -225
+scale = Vector2(20, 20)
+texture = ExtResource("6_i6g32")
