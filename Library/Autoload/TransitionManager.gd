@@ -1,7 +1,7 @@
 extends Node
 
-const TransitionDurationIn = 0.5
-const TransitionDurationOut = 0.5
+const TransitionDurationIn = 0.2
+const TransitionDurationOut = 0.2
 
 signal EV_TransitionFinished
 signal EV_TransitionCovered
@@ -9,13 +9,13 @@ signal EV_VisualsUpdate #Should only be used for visuals, doesn't get reset
 
 var modeIn : bool
 var t : float
+var _transitioning
 
 func _ready():
 	process_mode=Node.PROCESS_MODE_ALWAYS
-	set_process(false)
 
 func IsTransitioning():
-	return is_processing()
+	return _transitioning
 
 #path or packed
 var _curScene
@@ -33,12 +33,11 @@ func _TransitionSceneCovered():
 		get_tree().change_scene_to_file(_curScene)
 
 func TransitionStart(canOverride : bool = false):
-	SoundSpawner.SpawnFromName("TransitionIn")
 	if IsTransitioning() and not canOverride:
 		return
 	modeIn=true
 	t=0
-	set_process(true)
+	_transitioning=true
 
 func _process(delta):
 	var duration =  TransitionDurationIn if modeIn else TransitionDurationOut
@@ -49,10 +48,9 @@ func _process(delta):
 		if modeIn:
 			EV_TransitionCovered.emit()
 			modeIn=false
-			SoundSpawner.SpawnFromName("TransitionOut")
 			t=0
 		else:
 			EV_TransitionFinished.emit()
 			MathS.ClearSignal(EV_TransitionFinished)
 			MathS.ClearSignal(EV_TransitionCovered)
-			set_process(false)
+			_transitioning=false

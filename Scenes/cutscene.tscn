@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://br0c8if8056q6"]
+
+[ext_resource type="Script" uid="uid://dh7j2b456t88q" path="res://Scripts/Cutscene.gd" id="1_7n648"]
+[ext_resource type="PackedScene" uid="uid://c2fketo4xojpn" path="res://Scenes/game.tscn" id="2_vlwh7"]
+
+[node name="Cutscene" type="Node2D"]
+script = ExtResource("1_7n648")
+_playTransitionScene = ExtResource("2_vlwh7")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 230.99997
+offset_top = 214.0
+offset_right = 363.99997
+offset_bottom = 250.0
+scale = Vector2(6.21, 6.21)
+text = "CUTSCENE!"

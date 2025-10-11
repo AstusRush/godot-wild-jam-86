@@ -1,3 +1,155 @@
-[gd_scene format=3 uid="uid://c2fketo4xojpn"]
+[gd_scene load_steps=5 format=3 uid="uid://c2fketo4xojpn"]
 
-[node name="Node2D" type="Node2D"]
+[ext_resource type="PackedScene" uid="uid://cg7pjf54rwrq1" path="res://Scenes/player.tscn" id="1_ebmjs"]
+[ext_resource type="Script" uid="uid://cgc4iakrvjk3m" path="res://Scripts/Paused.gd" id="2_qxrlw"]
+[ext_resource type="Script" uid="uid://ce6p4aodr01aw" path="res://Scripts/Player.gd" id="2_wrm1d"]
+[ext_resource type="Script" uid="uid://mq7doga6rtdm" path="res://Scripts/DeathScreen.gd" id="4_3dryh"]
+
+[node name="Game" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Player" parent="." instance=ExtResource("1_ebmjs")]
+position = Vector2(274, -2)
+script = ExtResource("2_wrm1d")
+
+[node name="Paused" type="Control" parent="." node_paths=PackedStringArray("_btnContinue", "_btnRestart", "_btnReturn")]
+process_mode = 3
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_qxrlw")
+_btnContinue = NodePath("VBoxContainer/btnContinue")
+_btnRestart = NodePath("VBoxContainer/btnRestart")
+_btnReturn = NodePath("VBoxContainer/btnReturn")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Paused"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -109.5
+offset_top = -85.0
+offset_right = 109.5
+offset_bottom = 85.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="btnContinue" type="Button" parent="Paused/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "CONTINUE"
+
+[node name="btnRestart" type="Button" parent="Paused/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "RESTART"
+
+[node name="btnReturn" type="Button" parent="Paused/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "MENU"
+
+[node name="DeathScreen" type="Control" parent="." node_paths=PackedStringArray("_deathMessageLabel", "_statTimeAlive", "_statKillCount", "_retryPromptLabel", "_btnRetry", "_btnReturn")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_3dryh")
+_deathMessageLabel = NodePath("DeathMessage")
+_statTimeAlive = NodePath("VBoxStats/timeAlive")
+_statKillCount = NodePath("VBoxStats/killCount")
+_retryPromptLabel = NodePath("RetryPrompt")
+_btnRetry = NodePath("HBoxContainer/BtnRetry")
+_btnReturn = NodePath("HBoxContainer/BtnReturn")
+
+[node name="VBoxStats" type="VBoxContainer" parent="DeathScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -300.0
+offset_top = -182.0
+offset_right = 300.0
+offset_bottom = 90.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="timeAlive" type="RichTextLabel" parent="DeathScreen/VBoxStats"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 40
+text = "TIME SURVIVED"
+
+[node name="killCount" type="RichTextLabel" parent="DeathScreen/VBoxStats"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 40
+text = "KILL COUNT"
+
+[node name="DeathMessage" type="RichTextLabel" parent="DeathScreen"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -750.0
+offset_top = -307.0
+offset_right = 750.0
+offset_bottom = -195.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/normal_font_size = 80
+bbcode_enabled = true
+text = "[center]DEAD"
+
+[node name="RetryPrompt" type="RichTextLabel" parent="DeathScreen"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -750.0
+offset_top = 70.0
+offset_right = 750.0
+offset_bottom = 182.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_font_sizes/normal_font_size = 70
+bbcode_enabled = true
+text = "[center]Again?"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="DeathScreen"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -200.0
+offset_top = 178.0
+offset_right = 200.0
+offset_bottom = 303.0
+grow_horizontal = 2
+theme_override_constants/separation = 54
+
+[node name="BtnRetry" type="Button" parent="DeathScreen/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "AGAIN!"
+
+[node name="BtnReturn" type="Button" parent="DeathScreen/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "MENU"
