@@ -12,6 +12,7 @@
 [node name="Camera2D" type="Camera2D" parent="."]
 script = ExtResource("1_wowpa")
 _mouseOffsetMod = 0.2
+_swaySpeed = 12.0
 
 [node name="Paused" type="Control" parent="Camera2D" node_paths=PackedStringArray("_btnContinue", "_btnRestart", "_btnReturn")]
 process_mode = 3
@@ -156,6 +157,17 @@ text = "MENU"
 
 [node name="Player" parent="." instance=ExtResource("1_ebmjs")]
 script = ExtResource("2_wrm1d")
+baseAccel = 1000.0
+baseDrag = 1.5
+baseDecel = 3000.0
+jitterSnapThreshold = 50
+maxCounterMod = 5.0
+lungeSpeedMin = 1900
+lungeSpeedMax = 3200
+lungeDrag = 5000
+lungeAccel = 400
+maxLungeCounterMod = 3.5
+maxLungeCharge = 1.5
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0.28235295, 0.11372549, 1, 0.29803923)
