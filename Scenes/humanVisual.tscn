@@ -1,0 +1,23 @@
+[gd_scene load_steps=7 format=3 uid="uid://2ky0lpmor8ix"]
+
+[ext_resource type="Texture2D" uid="uid://d3o564koq8wpa" path="res://Sprites/Human/Tex_Torso_0.tres" id="1_g5yyx"]
+[ext_resource type="Script" uid="uid://c0cvxu1p1g0kw" path="res://Scripts/HumanVisual.gd" id="1_r6vy1"]
+[ext_resource type="Texture2D" uid="uid://ck62xlc6vifst" path="res://Sprites/Human/Tex_Feet_Stand.tres" id="2_twyw8"]
+[ext_resource type="Texture2D" uid="uid://dmi8usx3imy4s" path="res://Sprites/Human/Tex_Head.png" id="3_okwwo"]
+[ext_resource type="Texture2D" uid="uid://j5m8btjhjn7s" path="res://Sprites/Human/Tex_Feet_Walk_0.tres" id="3_wfjqs"]
+[ext_resource type="Texture2D" uid="uid://c1enamiacxq3j" path="res://Sprites/Human/Tex_Feet_Walk_1.tres" id="4_dg6v6"]
+
+[node name="HumanVisual" type="Node2D"]
+script = ExtResource("1_r6vy1")
+texFeetStanding = ExtResource("2_twyw8")
+texFeetWalk0 = ExtResource("3_wfjqs")
+texFeetWalk1 = ExtResource("4_dg6v6")
+
+[node name="Feet" type="Sprite2D" parent="."]
+
+[node name="Torso" type="Sprite2D" parent="."]
+texture = ExtResource("1_g5yyx")
+
+[node name="Head" type="Sprite2D" parent="."]
+modulate = Color(0.5033745, 0.5033746, 0.5033746, 1)
+texture = ExtResource("3_okwwo")

@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://cy8xoy4p76uee"]
+
+[ext_resource type="Script" uid="uid://bwlsbja85m83w" path="res://Scripts/Enemy.gd" id="1_85k2d"]
+[ext_resource type="PackedScene" uid="uid://2ky0lpmor8ix" path="res://Scenes/humanVisual.tscn" id="2_rt8xn"]
+[ext_resource type="PackedScene" uid="uid://bo6hp5kpie648" path="res://Scenes/humanCorpse.tscn" id="3_jhwsk"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_1f0kj"]
+friction = 0.0
+bounce = 0.2
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1f0kj"]
+radius = 45.099888
+
+[node name="Civilian" type="RigidBody2D" node_paths=PackedStringArray("viewRotate")]
+collision_layer = 2
+collision_mask = 4
+physics_material_override = SubResource("PhysicsMaterial_1f0kj")
+gravity_scale = 0.0
+lock_rotation = true
+script = ExtResource("1_85k2d")
+viewRotate = NodePath("Rotate")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_1f0kj")
+
+[node name="Rotate" type="Node2D" parent="."]
+
+[node name="HumanVisual" parent="Rotate" node_paths=PackedStringArray("enemy") instance=ExtResource("2_rt8xn")]
+enemy = NodePath("../..")
+
+[node name="HumanCorpse" parent="Rotate" node_paths=PackedStringArray("enemy") instance=ExtResource("3_jhwsk")]
+visible = false
+enemy = NodePath("../..")

@@ -56,10 +56,6 @@ func _process(delta):
 		if isChargingLunge():
 			_lungeRelease()
 	
-
-	if Input.is_action_just_pressed("Test"):
-		die()
-
 	modulate.r=1 if not isLunging() else 0
 
 

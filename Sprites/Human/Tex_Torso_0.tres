@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://d3o564koq8wpa"]
+
+[ext_resource type="Texture2D" uid="uid://cvc0l6cp85fw2" path="res://Sprites/Human/TorsoSheet.png" id="1_whbhg"]
+
+[resource]
+atlas = ExtResource("1_whbhg")
+region = Rect2(0, 0, 200, 0)
