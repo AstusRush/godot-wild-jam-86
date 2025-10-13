@@ -9,12 +9,17 @@ const ImpactForceMod = 1.2
 const CollisionMaskAlive = 4
 const CollisionMaskDead = 4 # can now collide with walls
 
+@export var type : Level.EnemyType
 @export var turnSpeed : float = 50
 @export var fieldOfView : float = 100
 @export var viewRange : float = 700
 
 @export var viewRotate : Node2D
 var _lookingDir : Vector2
+
+@export var corpseDespawnTime : float = 20
+var corpseT : float = 0
+const corpseFadeThreshold : float = 0.65
 
 func _enter_tree():
 	linear_damp=0
@@ -25,6 +30,14 @@ var testSpeed : float
 
 func _physics_process(delta):
 	if isDead():
+		corpseT+=delta
+			
+
+		if corpseT >= corpseDespawnTime:
+			queue_free()
+		elif corpseT >= corpseDespawnTime-corpseFadeThreshold:
+			discoverCorpse()
+			modulate.a=(corpseDespawnTime-corpseT)/corpseFadeThreshold
 		return
 
 	linear_velocity=Vector2.DOWN*testSpeed
@@ -62,3 +75,15 @@ func hit(impactForce : Vector2):
 
 func isDead():
 	return _dead
+
+var _discovered : bool = false
+func discoverCorpse():
+	if not isDead() or _discovered:
+		return
+	_discovered=true
+	EV_DiscoverCorpse.emit()
+	if corpseDespawnTime - corpseFadeThreshold > corpseT:
+		corpseT = corpseDespawnTime - corpseFadeThreshold
+	print("Corpse Discovered")
+
+signal EV_DiscoverCorpse

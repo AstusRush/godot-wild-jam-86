@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://cy8xoy4p76uee"]
 
-[ext_resource type="Script" uid="uid://bwlsbja85m83w" path="res://Scripts/Enemy.gd" id="1_85k2d"]
+[ext_resource type="Script" uid="uid://ckhahww776rd" path="res://Scripts/EnemyCivilian.gd" id="1_85k2d"]
 [ext_resource type="PackedScene" uid="uid://2ky0lpmor8ix" path="res://Scenes/humanVisual.tscn" id="2_rt8xn"]
 [ext_resource type="PackedScene" uid="uid://bo6hp5kpie648" path="res://Scenes/humanCorpse.tscn" id="3_jhwsk"]
 
@@ -19,6 +19,7 @@ gravity_scale = 0.0
 lock_rotation = true
 script = ExtResource("1_85k2d")
 viewRotate = NodePath("Rotate")
+corpseDespawnTime = 10.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_1f0kj")

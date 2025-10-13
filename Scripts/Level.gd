@@ -4,6 +4,10 @@ extends Node
 var player : Player
 var camera : GameCamera
 
+var colorScheme : ColorScheme
+
+func _enter_tree():
+	colorScheme = load("res://colorscheme.tres")
 enum EnemyType{Civilian}
 func SpawnEnemy(position : Vector2, type : EnemyType):
 	var result : Enemy

@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=3 uid="uid://drblwsfw3rfuo"]
+
+[ext_resource type="Script" uid="uid://dlre676s26eiy" path="res://Scripts/Mask.gd" id="1_nr6xi"]
+[ext_resource type="Script" uid="uid://2jrrh6gpg23n" path="res://Library/VisualEffects/SmoothToggle.gd" id="2_i8ixn"]
+[ext_resource type="Texture2D" uid="uid://dmi8usx3imy4s" path="res://Sprites/Human/Tex_Head.png" id="2_lm7dy"]
+[ext_resource type="Texture2D" uid="uid://j5m8btjhjn7s" path="res://Sprites/Human/Tex_Feet_Walk_0.tres" id="3_i8ixn"]
+[ext_resource type="Texture2D" uid="uid://bpwrtt0obc77l" path="res://icon.svg" id="5_7cpxp"]
+
+[node name="Mask" type="Node2D" node_paths=PackedStringArray("_spSkin", "_spHair", "compromisedToggle")]
+z_index = 100
+script = ExtResource("1_nr6xi")
+_spSkin = NodePath("SmoothToggle/Skin")
+_spHair = NodePath("SmoothToggle/Hair")
+_moveSpeed = 7.0
+compromisedToggle = NodePath("CompromisedToggle")
+metadata/_custom_type_script = "uid://dlre676s26eiy"
+
+[node name="SmoothToggle" type="Node2D" parent="."]
+script = ExtResource("2_i8ixn")
+_easeIn = 1
+metadata/_custom_type_script = "uid://2jrrh6gpg23n"
+
+[node name="Skin" type="Sprite2D" parent="SmoothToggle"]
+scale = Vector2(1.352274, 1.3950642)
+texture = ExtResource("2_lm7dy")
+
+[node name="Hair" type="Sprite2D" parent="SmoothToggle"]
+scale = Vector2(1.352274, 1.3950642)
+texture = ExtResource("3_i8ixn")
+
+[node name="CompromisedToggle" type="Node2D" parent="."]
+script = ExtResource("2_i8ixn")
+_startMode = 1
+speedIn = 10.0
+_easeIn = 3
+metadata/_custom_type_script = "uid://2jrrh6gpg23n"
+
+[node name="Sprite2D" type="Sprite2D" parent="CompromisedToggle"]
+texture = ExtResource("5_7cpxp")

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ColorScheme" load_steps=2 format=3 uid="uid://cla5b8ejgrioq"]
+
+[ext_resource type="Script" uid="uid://brb0dkdbb7yt6" path="res://Scripts/ColorScheme.gd" id="1_clac6"]
+
+[resource]
+script = ExtResource("1_clac6")
+skinColors = Array[Color]([Color(1, 1, 1, 1), Color(0.5191619, 0.5191619, 0.5191619, 1), Color(0, 0, 0, 1)])
+hairColors = Array[Color]([Color(0.6627451, 0, 0, 1), Color(0, 0, 0.61960787, 1)])
+clothingColors = Array[Color]([Color(0.19215687, 0.19215687, 0, 1), Color(0.3372549, 0.59607846, 0.43529412, 1), Color(0.42745098, 0.54901963, 0.89411765, 1)])
+metadata/_custom_type_script = "uid://brb0dkdbb7yt6"

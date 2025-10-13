@@ -1,12 +1,16 @@
-[gd_scene load_steps=11 format=4 uid="uid://c2fketo4xojpn"]
+[gd_scene load_steps=15 format=4 uid="uid://c2fketo4xojpn"]
 
 [ext_resource type="PackedScene" uid="uid://cg7pjf54rwrq1" path="res://Scenes/player.tscn" id="1_ebmjs"]
 [ext_resource type="Script" uid="uid://dshkgbsarahv5" path="res://Scripts/GameCamera.gd" id="1_wowpa"]
 [ext_resource type="Script" uid="uid://cgc4iakrvjk3m" path="res://Scripts/Paused.gd" id="2_qxrlw"]
 [ext_resource type="Script" uid="uid://ce6p4aodr01aw" path="res://Scripts/Player.gd" id="2_wrm1d"]
 [ext_resource type="Script" uid="uid://mq7doga6rtdm" path="res://Scripts/DeathScreen.gd" id="4_3dryh"]
+[ext_resource type="Script" uid="uid://xrgct08u1tg" path="res://Scripts/MaskHolder.gd" id="4_ldgsr"]
+[ext_resource type="PackedScene" uid="uid://drblwsfw3rfuo" path="res://Scenes/mask.tscn" id="6_v158k"]
 [ext_resource type="PackedScene" uid="uid://cy8xoy4p76uee" path="res://Scenes/Enemies/civilian.tscn" id="7_1l0tm"]
+[ext_resource type="PackedScene" uid="uid://bwbfhrx0wp02o" path="res://Scenes/monsterVisual.tscn" id="8_o5yvi"]
 [ext_resource type="Texture2D" uid="uid://bjl22uwx5f68w" path="res://Sprites/Human/Tilemap.png" id="8_v158k"]
+[ext_resource type="PackedScene" uid="uid://2ky0lpmor8ix" path="res://Scenes/humanVisual.tscn" id="9_rku1e"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1l0tm"]
 radius = 66.4906
@@ -20,7 +24,7 @@ texture_region_size = Vector2i(100, 100)
 [sub_resource type="TileSet" id="TileSet_1l0tm"]
 tile_size = Vector2i(100, 100)
 physics_layer_0/collision_layer = 4
-physics_layer_0/collision_mask = 0
+physics_layer_0/collision_mask = 3
 sources/0 = SubResource("TileSetAtlasSource_v158k")
 
 [node name="Game" type="Node2D"]
@@ -175,7 +179,18 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "MENU"
 
-[node name="Player" parent="." node_paths=PackedStringArray("attackBox", "paused") instance=ExtResource("1_ebmjs")]
+[node name="MaskHolder" type="Control" parent="Camera2D"]
+process_mode = 3
+process_priority = -40
+layout_mode = 3
+anchors_preset = 0
+offset_top = 437.0
+offset_bottom = 437.0
+script = ExtResource("4_ldgsr")
+distanceBetweenMasks = 300.0
+startMaskY = -400.0
+
+[node name="Player" parent="." node_paths=PackedStringArray("attackBox", "paused", "maskHolder", "monsterVisual", "humanVisual") instance=ExtResource("1_ebmjs")]
 collision_mask = 5
 lock_rotation = true
 script = ExtResource("2_wrm1d")
@@ -192,6 +207,10 @@ maxLungeCounterMod = 3.5
 maxLungeCharge = 0.8
 attackBox = NodePath("AttackBox")
 paused = NodePath("../Camera2D/Paused")
+maskHolder = NodePath("../Camera2D/MaskHolder")
+maskPacked = ExtResource("6_v158k")
+monsterVisual = NodePath("MonsterVisual")
+humanVisual = NodePath("HumanVisual")
 
 [node name="AttackBox" type="Area2D" parent="Player"]
 collision_layer = 0
@@ -199,6 +218,10 @@ collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player/AttackBox"]
 shape = SubResource("CircleShape2D_1l0tm")
+
+[node name="MonsterVisual" parent="Player" instance=ExtResource("8_o5yvi")]
+
+[node name="HumanVisual" parent="Player" instance=ExtResource("9_rku1e")]
 
 [node name="Enemy" parent="." instance=ExtResource("7_1l0tm")]
 position = Vector2(283, -19)

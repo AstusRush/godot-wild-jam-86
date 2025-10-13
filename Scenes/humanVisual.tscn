@@ -21,3 +21,5 @@ texture = ExtResource("1_g5yyx")
 [node name="Head" type="Sprite2D" parent="."]
 modulate = Color(0.5033745, 0.5033746, 0.5033746, 1)
 texture = ExtResource("3_okwwo")
+
+[node name="Hair" type="Sprite2D" parent="."]
