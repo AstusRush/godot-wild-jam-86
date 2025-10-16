@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://2ky0lpmor8ix"]
+[gd_scene load_steps=8 format=3 uid="uid://2ky0lpmor8ix"]
 
 [ext_resource type="Texture2D" uid="uid://d3o564koq8wpa" path="res://Sprites/Human/Tex_Torso_0.tres" id="1_g5yyx"]
 [ext_resource type="Script" uid="uid://c0cvxu1p1g0kw" path="res://Scripts/HumanVisual.gd" id="1_r6vy1"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dmi8usx3imy4s" path="res://Sprites/Human/Tex_Head.png" id="3_okwwo"]
 [ext_resource type="Texture2D" uid="uid://j5m8btjhjn7s" path="res://Sprites/Human/Tex_Feet_Walk_0.tres" id="3_wfjqs"]
 [ext_resource type="Texture2D" uid="uid://c1enamiacxq3j" path="res://Sprites/Human/Tex_Feet_Walk_1.tres" id="4_dg6v6"]
+[ext_resource type="Texture2D" uid="uid://npnw2b7camk1" path="res://Sprites/Human/Hairstyles/Tex_Hair_0.png" id="7_wfjqs"]
 
 [node name="HumanVisual" type="Node2D"]
 script = ExtResource("1_r6vy1")
@@ -23,3 +24,4 @@ modulate = Color(0.5033745, 0.5033746, 0.5033746, 1)
 texture = ExtResource("3_okwwo")
 
 [node name="Hair" type="Sprite2D" parent="."]
+texture = ExtResource("7_wfjqs")

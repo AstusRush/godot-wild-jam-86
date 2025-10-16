@@ -19,8 +19,10 @@ func SpawnEnemy(position : Vector2, type : EnemyType):
 	player.get_parent().add_child(result)
 	return result
 
-
+var testEnemy : Enemy
 func _process(delta: float):
 	
-	if Input.is_action_just_pressed("Test2"):
-		SpawnEnemy(Vector2(MathS.RandSigned()*400,MathS.RandSigned()*400), EnemyType.Civilian)
+	if Input.is_action_just_pressed("Test"):
+		#if testEnemy==null:
+		#testEnemy.navigateTowards(Level.player.position)
+		testEnemy = SpawnEnemy(Vector2(MathS.RandSigned()*400,MathS.RandSigned()*400), EnemyType.Civilian)

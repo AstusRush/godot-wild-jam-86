@@ -6,3 +6,6 @@ var identity : HumanIdentity
 func _enter_tree():
 	super._enter_tree()
 	identity = HumanIdentity.new(get_parent())
+
+func detect(delta, distToPlayer):
+	pass

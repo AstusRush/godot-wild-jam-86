@@ -4,7 +4,8 @@
 
 [resource]
 script = ExtResource("1_clac6")
-skinColors = Array[Color]([Color(1, 1, 1, 1), Color(0.5191619, 0.5191619, 0.5191619, 1), Color(0, 0, 0, 1)])
-hairColors = Array[Color]([Color(0.6627451, 0, 0, 1), Color(0, 0, 0.61960787, 1)])
-clothingColors = Array[Color]([Color(0.19215687, 0.19215687, 0, 1), Color(0.3372549, 0.59607846, 0.43529412, 1), Color(0.42745098, 0.54901963, 0.89411765, 1)])
+skinColors = Array[Color]([Color(0.6619065, 0.5486906, 0.7688121, 1), Color(0.9986691, 0.955484, 0.70394105, 1), Color(0.2301924, 0.13365299, 0.21297535, 1), Color(0.6209985, 0.42856255, 0.73286194, 1)])
+hairColors = Array[Color]([Color(0.08903169, 0.5636593, 0.47880775, 1), Color(0.13280001, 0.83, 0.70217997, 1), Color(0, 0.83, 0.4979999, 1), Color(0.83, 0.0996, 0.5500134, 1), Color(1, 0.050000012, 0.82583326, 1), Color(0.68333364, 0.050000012, 1, 1)])
+clothingColors = Array[Color]([Color(1, 0.8666667, 0, 1), Color(0.88, 0.83746666, 0.3696, 1), Color(0.88, 0.57199997, 0, 1)])
+shoeColors = Array[Color]([Color(1, 0.08627451, 0.83137256, 1), Color(0.08900002, 0.89, 0.50285, 1), Color(0.92, 0.80714667, 0.07359999, 1)])
 metadata/_custom_type_script = "uid://brb0dkdbb7yt6"

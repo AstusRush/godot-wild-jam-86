@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://bysdmtakw41ya"]
+
+[ext_resource type="Texture2D" uid="uid://c3buytjbunkht" path="res://Sprites/Human/FoliageSheet.png" id="1_roqpv"]
+
+[resource]
+atlas = ExtResource("1_roqpv")
+region = Rect2(0, 200, 100, 200)
