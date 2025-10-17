@@ -12,6 +12,7 @@ var hairMask : Texture2D
 const hairVariantCount : int = 4
 
 
+
 func _init(attachTo : Node):
 	colorSkin=Level.colorScheme.skinColors.pick_random()
 	colorHair=Level.colorScheme.hairColors.pick_random()
@@ -21,7 +22,9 @@ func _init(attachTo : Node):
 	var hairIdx = randi_range(-1,hairVariantCount-1)
 	if hairIdx == -1: # bald
 		hairTop=null
+		hairMask=null
 	else:
 		hairTop=load("res://Sprites/Human/Hairstyles/Tex_Hair_" + str(hairIdx) + ".png")
+		hairMask=load("res://Sprites/Human/Hairstyles/Mask/Tex_Hair_Mask_"+ str(hairIdx) +".png")
 
 	attachTo.call_deferred("add_child",self)

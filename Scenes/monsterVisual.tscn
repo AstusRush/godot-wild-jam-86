@@ -1,10 +1,14 @@
 [gd_scene load_steps=3 format=3 uid="uid://bwbfhrx0wp02o"]
 
 [ext_resource type="Script" uid="uid://cnpcuuvqdcrpo" path="res://Scripts/MonsterVisual.gd" id="1_h8kjf"]
-[ext_resource type="Texture2D" uid="uid://bpwrtt0obc77l" path="res://icon.svg" id="2_l65u4"]
+[ext_resource type="Texture2D" uid="uid://be16s26d5xb2l" path="res://Sprites/Tex_MonsterBody.png" id="2_l65u4"]
 
-[node name="MonsterVisual" type="Node2D"]
+[node name="MonsterVisual" type="Node2D" node_paths=PackedStringArray("mainBody")]
 script = ExtResource("1_h8kjf")
+mainBody = NodePath("Sprite2D")
+spinSpeed = 15.0
+pulsateStrength = 0.05
+pulsateSpeed = 20.0
 metadata/_custom_type_script = "uid://cnpcuuvqdcrpo"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

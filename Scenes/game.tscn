@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c2fketo4xojpn"]
+[gd_scene load_steps=15 format=3 uid="uid://c2fketo4xojpn"]
 
 [ext_resource type="PackedScene" uid="uid://cg7pjf54rwrq1" path="res://Scenes/player.tscn" id="1_ebmjs"]
 [ext_resource type="Script" uid="uid://dshkgbsarahv5" path="res://Scripts/GameCamera.gd" id="1_wowpa"]
@@ -10,6 +10,9 @@
 [ext_resource type="PackedScene" uid="uid://bwbfhrx0wp02o" path="res://Scenes/monsterVisual.tscn" id="8_o5yvi"]
 [ext_resource type="PackedScene" uid="uid://2ky0lpmor8ix" path="res://Scenes/humanVisual.tscn" id="9_rku1e"]
 [ext_resource type="PackedScene" uid="uid://dkoupd5mv048d" path="res://Scenes/Layouts/Layout_0.tscn" id="10_o5yvi"]
+[ext_resource type="Script" uid="uid://dd3kah2hi2y2i" path="res://Scripts/MonsterBlob.gd" id="11_o5yvi"]
+[ext_resource type="Texture2D" uid="uid://b02wl1elcen5q" path="res://Sprites/Tex_MonsterBlobA.png" id="11_rku1e"]
+[ext_resource type="Texture2D" uid="uid://b7peplao0gatr" path="res://Sprites/Tex_MonsterBlobB.png" id="13_rfjv2"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1l0tm"]
 radius = 66.4906
@@ -24,7 +27,7 @@ _screenshakeStrength = 17
 _screenshakeEase = 1
 _zoomReturnSpeed = 0.3
 _zoomModNormal = 0.6
-_zoomModFullCharged = 0.45
+_zoomModFullCharged = 0.55
 
 [node name="Paused" type="Control" parent="Camera2D" node_paths=PackedStringArray("_btnContinue", "_btnRestart", "_btnReturn")]
 process_mode = 3
@@ -175,8 +178,9 @@ anchors_preset = 0
 offset_top = 437.0
 offset_bottom = 437.0
 script = ExtResource("4_ldgsr")
-distanceBetweenMasks = 300.0
+distanceBetweenMasks = 500.0
 startMaskY = -400.0
+equipBoost = 50.0
 
 [node name="Player" parent="." node_paths=PackedStringArray("attackBox", "paused", "maskHolder", "monsterVisual", "humanVisual") instance=ExtResource("1_ebmjs")]
 collision_mask = 5
@@ -207,7 +211,12 @@ collision_mask = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player/AttackBox"]
 shape = SubResource("CircleShape2D_1l0tm")
 
-[node name="MonsterVisual" parent="Player" instance=ExtResource("8_o5yvi")]
+[node name="MonsterVisual" parent="Player" node_paths=PackedStringArray("blobHolder") instance=ExtResource("8_o5yvi")]
+blobHolder = NodePath("../../BlobHolder")
+spinSpeed = 150.0
+pulsateStrength = 0.2
+colorNormal = Color(1, 0, 0.9843137, 1)
+colorActive = Color(0, 1, 0.2509804, 1)
 
 [node name="HumanVisual" parent="Player" instance=ExtResource("9_rku1e")]
 
@@ -220,3 +229,75 @@ offset_top = -20000.0
 offset_right = 20000.0
 offset_bottom = 20000.0
 color = Color(0.41078004, 0.3384, 0.47, 1)
+
+[node name="BlobHolder" type="Node2D" parent="."]
+
+[node name="MonsterBlob" type="Sprite2D" parent="BlobHolder"]
+texture = ExtResource("11_rku1e")
+script = ExtResource("11_o5yvi")
+metadata/_custom_type_script = "uid://dd3kah2hi2y2i"
+
+[node name="MonsterBlob2" type="Sprite2D" parent="BlobHolder"]
+texture = ExtResource("13_rfjv2")
+script = ExtResource("11_o5yvi")
+metadata/_custom_type_script = "uid://dd3kah2hi2y2i"
+
+[node name="MonsterBlob3" type="Sprite2D" parent="BlobHolder"]
+texture = ExtResource("11_rku1e")
+script = ExtResource("11_o5yvi")
+metadata/_custom_type_script = "uid://dd3kah2hi2y2i"
+
+[node name="MonsterBlob4" type="Sprite2D" parent="BlobHolder"]
+texture = ExtResource("13_rfjv2")
+script = ExtResource("11_o5yvi")
+metadata/_custom_type_script = "uid://dd3kah2hi2y2i"
+
+[node name="MonsterBlob5" type="Sprite2D" parent="BlobHolder"]
+texture = ExtResource("11_rku1e")
+script = ExtResource("11_o5yvi")
+metadata/_custom_type_script = "uid://dd3kah2hi2y2i"
+
+[node name="MonsterBlob6" type="Sprite2D" parent="BlobHolder"]
+texture = ExtResource("13_rfjv2")
+script = ExtResource("11_o5yvi")
+metadata/_custom_type_script = "uid://dd3kah2hi2y2i"
+
+[node name="MonsterBlob7" type="Sprite2D" parent="BlobHolder"]
+texture = ExtResource("11_rku1e")
+script = ExtResource("11_o5yvi")
+metadata/_custom_type_script = "uid://dd3kah2hi2y2i"
+
+[node name="MonsterBlob8" type="Sprite2D" parent="BlobHolder"]
+texture = ExtResource("13_rfjv2")
+script = ExtResource("11_o5yvi")
+metadata/_custom_type_script = "uid://dd3kah2hi2y2i"
+
+[node name="MonsterBlob9" type="Sprite2D" parent="BlobHolder"]
+texture = ExtResource("11_rku1e")
+script = ExtResource("11_o5yvi")
+metadata/_custom_type_script = "uid://dd3kah2hi2y2i"
+
+[node name="MonsterBlob10" type="Sprite2D" parent="BlobHolder"]
+texture = ExtResource("13_rfjv2")
+script = ExtResource("11_o5yvi")
+metadata/_custom_type_script = "uid://dd3kah2hi2y2i"
+
+[node name="MonsterBlob11" type="Sprite2D" parent="BlobHolder"]
+texture = ExtResource("11_rku1e")
+script = ExtResource("11_o5yvi")
+metadata/_custom_type_script = "uid://dd3kah2hi2y2i"
+
+[node name="MonsterBlob12" type="Sprite2D" parent="BlobHolder"]
+texture = ExtResource("13_rfjv2")
+script = ExtResource("11_o5yvi")
+metadata/_custom_type_script = "uid://dd3kah2hi2y2i"
+
+[node name="MonsterBlob13" type="Sprite2D" parent="BlobHolder"]
+texture = ExtResource("11_rku1e")
+script = ExtResource("11_o5yvi")
+metadata/_custom_type_script = "uid://dd3kah2hi2y2i"
+
+[node name="MonsterBlob14" type="Sprite2D" parent="BlobHolder"]
+texture = ExtResource("13_rfjv2")
+script = ExtResource("11_o5yvi")
+metadata/_custom_type_script = "uid://dd3kah2hi2y2i"

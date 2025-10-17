@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://dp6y1m1dlsicw"]
+
+[ext_resource type="Texture2D" uid="uid://cf2h7o2myiyhh" path="res://Sprites/Human/Face/FaceSheet.png" id="1_dnhf6"]
+
+[resource]
+atlas = ExtResource("1_dnhf6")
+region = Rect2(300, 0, 300, 0)

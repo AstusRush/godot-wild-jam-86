@@ -72,8 +72,6 @@ func _process(delta):
 		cycleMask(1)
 	elif Input.is_action_just_pressed("CycleMaskLeft"):
 		cycleMask(-1)
-	
-	modulate.r=1 if not isLunging() else 0
 
 	monsterVisual.visible=false
 	if getEquippedMask()==null:

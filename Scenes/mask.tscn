@@ -1,39 +1,162 @@
-[gd_scene load_steps=6 format=3 uid="uid://drblwsfw3rfuo"]
+[gd_scene load_steps=9 format=3 uid="uid://drblwsfw3rfuo"]
 
 [ext_resource type="Script" uid="uid://dlre676s26eiy" path="res://Scripts/Mask.gd" id="1_nr6xi"]
+[ext_resource type="Script" uid="uid://d32ri4dl0odrr" path="res://Library/VisualEffects/SquashAnchor.gd" id="2_6rdje"]
 [ext_resource type="Script" uid="uid://2jrrh6gpg23n" path="res://Library/VisualEffects/SmoothToggle.gd" id="2_i8ixn"]
-[ext_resource type="Texture2D" uid="uid://dmi8usx3imy4s" path="res://Sprites/Human/Tex_Head.png" id="2_lm7dy"]
-[ext_resource type="Texture2D" uid="uid://j5m8btjhjn7s" path="res://Sprites/Human/Tex_Feet_Walk_0.tres" id="3_i8ixn"]
+[ext_resource type="Texture2D" uid="uid://gpwko1lyrdwq" path="res://Sprites/Human/Face/Tex_Face_0.tres" id="3_7cpxp"]
+[ext_resource type="Texture2D" uid="uid://h2ofqkbe51qh" path="res://Sprites/Human/Hairstyles/Mask/Tex_Hair_Mask_1.png" id="4_7cpxp"]
+[ext_resource type="Texture2D" uid="uid://dp6y1m1dlsicw" path="res://Sprites/Human/Face/Tex_Face_1.tres" id="4_qd5pu"]
 [ext_resource type="Texture2D" uid="uid://bpwrtt0obc77l" path="res://icon.svg" id="5_7cpxp"]
+[ext_resource type="Texture2D" uid="uid://byfn35itwn13j" path="res://Sprites/Human/Face/Tex_Face_2.tres" id="5_ue75b"]
 
-[node name="Mask" type="Node2D" node_paths=PackedStringArray("_spSkin", "_spHair", "compromisedToggle")]
+[node name="Mask" type="Node2D" node_paths=PackedStringArray("_spHair", "_faces", "compromisedToggle", "squash", "posOffset")]
 z_index = 100
+scale = Vector2(0.925, 0.771)
 script = ExtResource("1_nr6xi")
-_spSkin = NodePath("SmoothToggle/Skin")
-_spHair = NodePath("SmoothToggle/Hair")
-_moveSpeed = 7.0
-compromisedToggle = NodePath("CompromisedToggle")
+_spHair = NodePath("PosOffset/SquashAnchor/SmoothToggle/Hair")
+_moveSpeed = 11.0
+_faces = NodePath("PosOffset/SquashAnchor/SmoothToggle/Faces")
+compromisedToggle = NodePath("PosOffset/CompromisedToggle")
+squash = NodePath("PosOffset/SquashAnchor")
+colorDormant = Color(0.14117648, 0.07450981, 0.12941177, 1)
+colorSelectedA = Color(1, 0, 0.9833331, 1)
+colorSelectedB = Color(0, 1, 0.25, 1)
+posOffset = NodePath("PosOffset")
+posOffsetRange = 7.0
 metadata/_custom_type_script = "uid://dlre676s26eiy"
 
-[node name="SmoothToggle" type="Node2D" parent="."]
+[node name="PosOffset" type="Node2D" parent="."]
+
+[node name="SquashAnchor" type="Node2D" parent="PosOffset"]
+scale = Vector2(0.9999999, 1)
+script = ExtResource("2_6rdje")
+duration = 0.1
+metadata/_custom_type_script = "uid://d32ri4dl0odrr"
+
+[node name="SmoothToggle" type="Node2D" parent="PosOffset/SquashAnchor"]
+scale = Vector2(1.0000001, 1)
 script = ExtResource("2_i8ixn")
 _easeIn = 1
 metadata/_custom_type_script = "uid://2jrrh6gpg23n"
 
-[node name="Skin" type="Sprite2D" parent="SmoothToggle"]
-scale = Vector2(1.352274, 1.3950642)
-texture = ExtResource("2_lm7dy")
+[node name="Faces" type="Node2D" parent="PosOffset/SquashAnchor/SmoothToggle"]
 
-[node name="Hair" type="Sprite2D" parent="SmoothToggle"]
-scale = Vector2(1.352274, 1.3950642)
-texture = ExtResource("3_i8ixn")
+[node name="Face0" type="Node2D" parent="PosOffset/SquashAnchor/SmoothToggle/Faces"]
+visible = false
 
-[node name="CompromisedToggle" type="Node2D" parent="."]
+[node name="Face" type="Sprite2D" parent="PosOffset/SquashAnchor/SmoothToggle/Faces/Face0"]
+scale = Vector2(1.352274, 1.3950642)
+texture = ExtResource("3_7cpxp")
+
+[node name="ColorRect" type="ColorRect" parent="PosOffset/SquashAnchor/SmoothToggle/Faces/Face0"]
+z_index = -1
+offset_left = -105.83332
+offset_top = -127.00001
+offset_right = 106.83279
+offset_bottom = 22.163109
+rotation = 0.031121539
+color = Color(0.95278174, 0.0008744395, 0.97249633, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="PosOffset/SquashAnchor/SmoothToggle/Faces/Face0"]
+z_index = -1
+offset_left = 106.444405
+offset_top = 12.970864
+offset_right = 291.9149
+offset_bottom = 101.78047
+rotation = 2.1055431
+color = Color(0.95278174, 0.0008744395, 0.97249633, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="PosOffset/SquashAnchor/SmoothToggle/Faces/Face0"]
+z_index = -1
+offset_left = 6.6666718
+offset_top = -29.000004
+offset_right = 192.13716
+offset_bottom = 59.809605
+rotation = 1.4742551
+color = Color(0.95278174, 0.0008744395, 0.97249633, 1)
+
+[node name="Face1" type="Node2D" parent="PosOffset/SquashAnchor/SmoothToggle/Faces"]
+visible = false
+
+[node name="Face" type="Sprite2D" parent="PosOffset/SquashAnchor/SmoothToggle/Faces/Face1"]
+scale = Vector2(1.352274, 1.3950642)
+texture = ExtResource("4_qd5pu")
+
+[node name="ColorRect" type="ColorRect" parent="PosOffset/SquashAnchor/SmoothToggle/Faces/Face1"]
+z_index = -1
+offset_left = -101.41929
+offset_top = -126.86259
+offset_right = 109.85146
+offset_bottom = 22.30053
+rotation = 0.031121539
+color = Color(0.95278174, 0.0008744395, 0.97249633, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="PosOffset/SquashAnchor/SmoothToggle/Faces/Face1"]
+z_index = -1
+offset_left = 106.444405
+offset_top = 12.970864
+offset_right = 266.10318
+offset_bottom = 101.78047
+rotation = 2.1055431
+color = Color(0.95278174, 0.0008744395, 0.97249633, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="PosOffset/SquashAnchor/SmoothToggle/Faces/Face1"]
+z_index = -1
+offset_left = 6.6666718
+offset_top = -29.000004
+offset_right = 162.95515
+offset_bottom = 59.809605
+rotation = 1.4742551
+color = Color(0.95278174, 0.0008744395, 0.97249633, 1)
+
+[node name="Face2" type="Node2D" parent="PosOffset/SquashAnchor/SmoothToggle/Faces"]
+visible = false
+
+[node name="Face" type="Sprite2D" parent="PosOffset/SquashAnchor/SmoothToggle/Faces/Face2"]
+scale = Vector2(1.352274, 1.3950642)
+texture = ExtResource("5_ue75b")
+
+[node name="ColorRect" type="ColorRect" parent="PosOffset/SquashAnchor/SmoothToggle/Faces/Face2"]
+z_index = -1
+offset_left = -9.698362
+offset_top = -165.80557
+offset_right = 171.59552
+offset_bottom = -15.088882
+rotation = 0.7981554
+color = Color(0.95278174, 0.0008744395, 0.97249633, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="PosOffset/SquashAnchor/SmoothToggle/Faces/Face2"]
+z_index = -1
+offset_left = 116.756744
+offset_top = -10.37614
+offset_right = 283.24994
+offset_bottom = 78.43347
+rotation = 1.9435049
+color = Color(0.95278174, 0.0008744395, 0.97249633, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="PosOffset/SquashAnchor/SmoothToggle/Faces/Face2"]
+z_index = -1
+offset_left = -34.594593
+offset_top = -64.850845
+offset_right = 121.69389
+offset_bottom = 23.958763
+rotation = 0.8302186
+color = Color(0.95278174, 0.0008744395, 0.97249633, 1)
+
+[node name="Hair" type="Sprite2D" parent="PosOffset/SquashAnchor/SmoothToggle"]
+modulate = Color(0.53436106, 0.53436106, 0.534361, 1)
+position = Vector2(2.4983807, -147.00002)
+scale = Vector2(1.3022631, 1.3950642)
+texture = ExtResource("4_7cpxp")
+
+[node name="CompromisedToggle" type="Node2D" parent="PosOffset"]
+visible = false
+scale = Vector2(0.99999994, 1)
 script = ExtResource("2_i8ixn")
 _startMode = 1
 speedIn = 10.0
 _easeIn = 3
 metadata/_custom_type_script = "uid://2jrrh6gpg23n"
 
-[node name="Sprite2D" type="Sprite2D" parent="CompromisedToggle"]
+[node name="Sprite2D" type="Sprite2D" parent="PosOffset/CompromisedToggle"]
 texture = ExtResource("5_7cpxp")
