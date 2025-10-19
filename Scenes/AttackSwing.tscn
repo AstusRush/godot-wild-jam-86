@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://3pm6ymo4cn1m"]
+
+[ext_resource type="Script" uid="uid://dt7q3bbn66w8f" path="res://Library/VisualEffects/FadeSprite.gd" id="1_g4yut"]
+[ext_resource type="Texture2D" uid="uid://dkow083q5ewiv" path="res://Sprites/Tex_AttackSwing.png" id="1_xrw8b"]
+
+[node name="AttackSwing" type="Sprite2D"]
+modulate = Color(0.8666667, 0, 1, 1)
+z_index = 10
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("1_xrw8b")
+script = ExtResource("1_g4yut")
+duration = 0.4
+metadata/_custom_type_script = "uid://dt7q3bbn66w8f"

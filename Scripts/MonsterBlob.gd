@@ -10,6 +10,10 @@ func setup(distance,angle, speed):
     _speed=speed
     _rotSpeed=MathS.RandSigned()*200
 
+func scatter():
+    position=Level.player.position
+    playerOffset=MathS.RandDir2()*650
+
 func _process(delta):
     position+=((Level.player.position+playerOffset)-position) * _speed * delta
     rotation_degrees+=_rotSpeed*delta

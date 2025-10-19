@@ -1,0 +1,47 @@
+[gd_scene load_steps=6 format=3 uid="uid://dlaadek3e6f5m"]
+
+[ext_resource type="Script" uid="uid://dvwk5kci2krty" path="res://Scripts/HungerBar.gd" id="1_ff611"]
+[ext_resource type="Script" uid="uid://d32ri4dl0odrr" path="res://Library/VisualEffects/SquashAnchor.gd" id="2_fde20"]
+[ext_resource type="Texture2D" uid="uid://dchfbom1lvpu4" path="res://Sprites/Human/Tex_Stomach.png" id="2_sducv"]
+[ext_resource type="Script" uid="uid://3uow3ihp353v" path="res://Library/VisualEffects/Shaker.gd" id="3_fde20"]
+[ext_resource type="Texture2D" uid="uid://c1x11umnrd2ay" path="res://Sprites/Human/Tex_StarvationNotch.png" id="5_so3xp"]
+
+[node name="HungerBar" type="Node2D" node_paths=PackedStringArray("spIcon", "spThreshold", "shaker", "squash", "lineBg", "lineFill")]
+script = ExtResource("1_ff611")
+spIcon = NodePath("SquashAnchor/Shaker/stomachIcon")
+spThreshold = NodePath("SquashAnchor/Shaker/thresholdIcon")
+shaker = NodePath("SquashAnchor/Shaker")
+squash = NodePath("SquashAnchor")
+lineSize = 1000
+lineBg = NodePath("SquashAnchor/Shaker/Flip/LineBg")
+lineFill = NodePath("SquashAnchor/Shaker/Flip/LineFill")
+metadata/_custom_type_script = "uid://dvwk5kci2krty"
+
+[node name="SquashAnchor" type="Node2D" parent="."]
+script = ExtResource("2_fde20")
+duration = 0.15
+metadata/_custom_type_script = "uid://d32ri4dl0odrr"
+
+[node name="Shaker" type="Node2D" parent="SquashAnchor"]
+script = ExtResource("3_fde20")
+metadata/_custom_type_script = "uid://3uow3ihp353v"
+
+[node name="stomachIcon" type="Sprite2D" parent="SquashAnchor/Shaker"]
+scale = Vector2(0.825, 0.825)
+texture = ExtResource("2_sducv")
+
+[node name="thresholdIcon" type="Sprite2D" parent="SquashAnchor/Shaker"]
+visible = false
+modulate = Color(0, 1, 0.2509804, 1)
+z_index = 4
+texture = ExtResource("5_so3xp")
+
+[node name="Flip" type="Node2D" parent="SquashAnchor/Shaker"]
+scale = Vector2(-1, 1)
+
+[node name="LineBg" type="Line2D" parent="SquashAnchor/Shaker/Flip"]
+points = PackedVector2Array(0, 0, 0, 0)
+
+[node name="LineFill" type="Line2D" parent="SquashAnchor/Shaker/Flip"]
+z_index = 2
+points = PackedVector2Array(0, 0, 0, 0)

@@ -1,4 +1,3 @@
-#TODO this has to be freed at some point
 class_name HumanIdentity
 extends Node
 

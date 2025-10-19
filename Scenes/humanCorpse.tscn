@@ -1,10 +1,58 @@
-[gd_scene load_steps=3 format=3 uid="uid://bo6hp5kpie648"]
+[gd_scene load_steps=9 format=3 uid="uid://bo6hp5kpie648"]
 
 [ext_resource type="Script" uid="uid://bgtan87t8mfng" path="res://Scripts/HumanCorpse.gd" id="1_qje5x"]
-[ext_resource type="Texture2D" uid="uid://dmi8usx3imy4s" path="res://Sprites/Human/Tex_Head.png" id="2_r2mv6"]
+[ext_resource type="Script" uid="uid://d32ri4dl0odrr" path="res://Library/VisualEffects/SquashAnchor.gd" id="2_lcrex"]
+[ext_resource type="Texture2D" uid="uid://clswsgt658crq" path="res://Sprites/Human/Tex_Corpse_Body.png" id="2_r2mv6"]
+[ext_resource type="Texture2D" uid="uid://1l38p0n5wu12" path="res://Sprites/Human/Tex_Corpse_Hands.png" id="3_lm7np"]
+[ext_resource type="Texture2D" uid="uid://l2x1dy0p4s83" path="res://Sprites/Human/Tex_Corpse_Head.png" id="4_0hof5"]
+[ext_resource type="Texture2D" uid="uid://wtp1si1ra2gu" path="res://Sprites/Human/Tex_Corpse_Feet.png" id="5_8s6ev"]
+[ext_resource type="Texture2D" uid="uid://drr4g6ri2nqwv" path="res://Sprites/Human/Tex_Corpse_Guard.png" id="7_2cpw6"]
+[ext_resource type="Texture2D" uid="uid://ba0ye6tvhoa5d" path="res://Sprites/Human/Tex_Corpse_Dog.png" id="8_xqjvt"]
 
-[node name="HumanCorpse" type="Node2D"]
+[node name="HumanCorpse" type="Node2D" node_paths=PackedStringArray("squash", "spBody", "spHands", "spHead", "spFeet", "spGuard", "spDog")]
+scale = Vector2(0.8, 0.8)
 script = ExtResource("1_qje5x")
+squash = NodePath("SquashAnchor")
+spBody = NodePath("SquashAnchor/Body")
+spHands = NodePath("SquashAnchor/Hands")
+spHead = NodePath("SquashAnchor/Head")
+spFeet = NodePath("SquashAnchor/Feet")
+spGuard = NodePath("SquashAnchor/Guard")
+spDog = NodePath("SquashAnchor/Dog")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="SquashAnchor" type="Node2D" parent="."]
+script = ExtResource("2_lcrex")
+metadata/_custom_type_script = "uid://d32ri4dl0odrr"
+
+[node name="Body" type="Sprite2D" parent="SquashAnchor"]
+position = Vector2(0.16651917, -61.364536)
+scale = Vector2(1.048, 0.568)
 texture = ExtResource("2_r2mv6")
+
+[node name="Hands" type="Sprite2D" parent="SquashAnchor"]
+modulate = Color(1, 0.55, 0.55, 1)
+position = Vector2(0.16651917, -61.364536)
+scale = Vector2(1.078, 0.568)
+texture = ExtResource("3_lm7np")
+
+[node name="Head" type="Sprite2D" parent="SquashAnchor"]
+modulate = Color(1, 0, 0.9843137, 1)
+texture = ExtResource("4_0hof5")
+
+[node name="Feet" type="Sprite2D" parent="SquashAnchor"]
+modulate = Color(0.5469679, 0.546968, 0.5469679, 1)
+position = Vector2(-3.9999998, -61.999996)
+scale = Vector2(0.972666, 0.57408863)
+texture = ExtResource("5_8s6ev")
+
+[node name="Guard" type="Sprite2D" parent="SquashAnchor"]
+visible = false
+modulate = Color(0.8666667, 0, 1, 1)
+texture = ExtResource("7_2cpw6")
+
+[node name="Dog" type="Sprite2D" parent="SquashAnchor"]
+visible = false
+modulate = Color(0.8666667, 0, 1, 1)
+position = Vector2(-1.2499999, -67.49999)
+scale = Vector2(1.25, 1.042)
+texture = ExtResource("8_xqjvt")

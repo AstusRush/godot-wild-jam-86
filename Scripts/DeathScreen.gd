@@ -20,6 +20,8 @@ func _ready():
 
 
 func _onDeath():
+	_statTimeAlive.text="[center]" + str(int(Level.stats.playtime)) + " SECONDS"
+	_statKillCount.text="[center]" + str(int(Level.stats.kills)) + " KILLS"
 	visible=true
 
 func _onBtnRetryPressed():

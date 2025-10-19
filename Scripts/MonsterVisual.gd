@@ -17,8 +17,14 @@ func _enter_tree():
 
 func _ready():
 	mainBody.rotation_degrees=randf()*360
+	Level.player.EV_death.connect(_onDeath)
 
 var visiblePrev
+
+func _onDeath():
+	blobHolder.visible=true
+	for b : MonsterBlob in blobHolder.get_children():
+		b.scatter()
 
 func _process(delta):
 	_t+=delta

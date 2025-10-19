@@ -16,18 +16,17 @@ func _enter_tree():
 @export var _zoomModNormal :float = 1
 @export var _zoomModFullCharged : float = 0.8
 
+var currentBounds : Vector2
 func _process(delta):
-	if Level.player.isDead():
-		return
-
+	
 	var mouseOffset = get_global_mouse_position()-position
+	if Level.player.isDead():
+		mouseOffset=Vector2.ZERO
 	mouseOffset.x=clamp(mouseOffset.x,-get_viewport_rect().size.x/2,get_viewport_rect().size.x/2)
 	mouseOffset.y=clamp(mouseOffset.y,-get_viewport_rect().size.y/2,get_viewport_rect().size.y/2)
 	mouseOffset*=_mouseOffsetMod
-	
 	_desiredPos=Level.player.position
 	_desiredPos+=mouseOffset
-	
 	position+=(_desiredPos-position) * _swaySpeed * delta
 
 
@@ -45,8 +44,23 @@ func _process(delta):
 	position+=MathS.RandDir2()*shakeMag
 	_screenshakeRemaining = max(_screenshakeRemaining-delta, 0)
 
+
+	currentBounds=Vector2(1152.0,1152.0)/zoom
+
 func getMouseDir():
 	return (get_global_mouse_position()-position).normalized()
+
+func isPointInBounds(p : Vector2):
+	if p.x>position.x+(currentBounds.x/2):
+		return false
+	if p.x<position.x-(currentBounds.x/2):
+		return false
+	if p.y>position.y+(currentBounds.y/2):
+		return false
+	if p.y<position.y-(currentBounds.y/2):
+		return false
+
+	return true
 
 func screenshake():
 	_screenshakeRemaining=_screenshakeDuration

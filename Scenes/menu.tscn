@@ -1,8 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://dwqh5wc578an"]
+[gd_scene load_steps=14 format=3 uid="uid://dwqh5wc578an"]
 
 [ext_resource type="Script" uid="uid://dugppfknf3ahk" path="res://Scripts/Menu.gd" id="1_1rerr"]
 [ext_resource type="PackedScene" uid="uid://c2fketo4xojpn" path="res://Scenes/game.tscn" id="2_xhh6f"]
-[ext_resource type="PackedScene" uid="uid://br0c8if8056q6" path="res://Scenes/cutscene.tscn" id="3_cayip"]
+[ext_resource type="Theme" uid="uid://ws7x6jjyhye1" path="res://mainTheme.tres" id="3_rfqti"]
+[ext_resource type="Texture2D" uid="uid://bjl22uwx5f68w" path="res://Sprites/Human/Tilemap.png" id="3_wwsa2"]
+[ext_resource type="Texture2D" uid="uid://cgsveqpxcabie" path="res://Sprites/Menu/Tex_Trunk_A.png" id="4_jsrd8"]
+[ext_resource type="Texture2D" uid="uid://bd0hnuq0fri4b" path="res://Sprites/Menu/Tex_Trunk_B.png" id="5_wbdvm"]
+[ext_resource type="Texture2D" uid="uid://cmiw03ouhv6r" path="res://Sprites/Human/Tex_Foliage_0.tres" id="6_q3rjx"]
+[ext_resource type="Texture2D" uid="uid://bysdmtakw41ya" path="res://Sprites/Human/Tex_Foliage_1.tres" id="7_6swd7"]
+[ext_resource type="Texture2D" uid="uid://c1w7hjo40sssg" path="res://Sprites/Human/Tex_Foliage_2.tres" id="8_7qvly"]
+[ext_resource type="Texture2D" uid="uid://bghl1k5t4axko" path="res://Sprites/Human/Tex_Circle.png" id="9_6swd7"]
+[ext_resource type="Script" uid="uid://c1jfly4tynx1d" path="res://Scripts/MenuEyes.gd" id="9_7qvly"]
+[ext_resource type="Script" uid="uid://b4lkd7qnfdmqd" path="res://Scripts/SoundSettings.gd" id="12_g8i7c"]
+[ext_resource type="Texture2D" uid="uid://dtltfc36c22ap" path="res://Sprites/Tex_Title.png" id="13_23t3j"]
 
 [node name="Menu" type="Control" node_paths=PackedStringArray("_btnBegin", "_labelCredits")]
 layout_mode = 3
@@ -15,7 +25,6 @@ script = ExtResource("1_1rerr")
 _btnBegin = NodePath("Begin")
 _labelCredits = NodePath("Credits")
 _playTransitionScene = ExtResource("2_xhh6f")
-_cutsceneTransitionScene = ExtResource("3_cayip")
 
 [node name="Begin" type="Button" parent="."]
 layout_mode = 1
@@ -24,32 +33,35 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -125.5
-offset_top = -59.0
-offset_right = 125.5
-offset_bottom = 59.0
+offset_left = -135.0
+offset_top = -57.0
+offset_right = 136.0
+offset_bottom = 110.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/font_size = 80
-text = "BEGIN"
+theme = ExtResource("3_rfqti")
+theme_override_font_sizes/font_size = 100
+text = "PLAY"
 
 [node name="Credits" type="RichTextLabel" parent="."]
+modulate = Color(1, 0, 0.827451, 1)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -307.0
-offset_top = 141.0
-offset_right = 308.0
-offset_bottom = 246.0
+offset_left = -455.0
+offset_top = 243.0
+offset_right = 437.0
+offset_bottom = 529.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_font_sizes/normal_font_size = 32
+theme_override_font_sizes/normal_font_size = 40
 bbcode_enabled = true
 
 [node name="RichTextLabel" type="RichTextLabel" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -62,3 +74,378 @@ grow_horizontal = 2
 theme_override_font_sizes/normal_font_size = 80
 bbcode_enabled = true
 text = "[center]GAME TITLE"
+
+[node name="Bg" type="Node2D" parent="."]
+z_index = -5
+
+[node name="Dark" type="ColorRect" parent="Bg"]
+offset_left = -49.0
+offset_top = 267.0
+offset_right = 1237.0
+offset_bottom = 1297.0
+mouse_filter = 2
+color = Color(0.14117648, 0.07058824, 0.12941177, 1)
+
+[node name="Tilemap" type="Sprite2D" parent="Bg"]
+position = Vector2(-729, 820)
+texture = ExtResource("3_wwsa2")
+
+[node name="Trunks" type="Node2D" parent="Bg"]
+modulate = Color(0.25027627, 0.138946, 0.23167178, 1)
+position = Vector2(24, -285)
+scale = Vector2(0.99092466, 1.1809549)
+
+[node name="TexTrunkA" type="Sprite2D" parent="Bg/Trunks"]
+position = Vector2(169, 907)
+scale = Vector2(1, 1.0966667)
+texture = ExtResource("4_jsrd8")
+
+[node name="TexTrunkB" type="Sprite2D" parent="Bg/Trunks"]
+position = Vector2(1068, 905)
+scale = Vector2(1, 1.1187685)
+texture = ExtResource("5_wbdvm")
+
+[node name="TexTrunkB5" type="Sprite2D" parent="Bg/Trunks"]
+modulate = Color(0.7792914, 0.7792914, 0.7792913, 1)
+position = Vector2(498, 952)
+scale = Vector2(-0.35761225, 1.304337)
+texture = ExtResource("5_wbdvm")
+
+[node name="TexTrunkB2" type="Sprite2D" parent="Bg/Trunks"]
+position = Vector2(364.99997, 883)
+scale = Vector2(0.79936594, 1.247356)
+texture = ExtResource("5_wbdvm")
+
+[node name="TexTrunkB6" type="Sprite2D" parent="Bg/Trunks"]
+modulate = Color(0.7792914, 0.7792914, 0.7792913, 1)
+position = Vector2(714.48425, 928.0625)
+scale = Vector2(0.31732532, 1.0607761)
+texture = ExtResource("5_wbdvm")
+
+[node name="TexTrunkB3" type="Sprite2D" parent="Bg/Trunks"]
+modulate = Color(0.7792914, 0.7792914, 0.7792913, 1)
+position = Vector2(46.99994, 896.99994)
+rotation = 0.07265344
+scale = Vector2(0.44031563, 1.247356)
+texture = ExtResource("5_wbdvm")
+
+[node name="TexTrunkB4" type="Sprite2D" parent="Bg/Trunks"]
+position = Vector2(801.99994, 895)
+rotation = -0.12748687
+scale = Vector2(0.44031563, 1.247356)
+texture = ExtResource("5_wbdvm")
+
+[node name="TexTrunkA2" type="Sprite2D" parent="Bg/Trunks"]
+position = Vector2(652.0001, 960.00006)
+rotation = -3.0246563
+scale = Vector2(1.0400012, -1.4166718)
+texture = ExtResource("4_jsrd8")
+
+[node name="Crown" type="Node2D" parent="Bg"]
+modulate = Color(0.07450981, 0.25882354, 0.21568628, 1)
+position = Vector2(22, 62.000008)
+scale = Vector2(7.4263754, 6.326493)
+
+[node name="ColorRect2" type="ColorRect" parent="Bg/Crown"]
+offset_left = -67.86622
+offset_top = -73.65852
+offset_right = -27.866219
+offset_bottom = -0.6378937
+scale = Vector2(8.518422, 1.6906062)
+mouse_filter = 2
+
+[node name="ColorRect3" type="ColorRect" parent="Bg/Crown"]
+offset_left = 123.209526
+offset_top = 28.767899
+offset_right = 163.20953
+offset_bottom = 101.78853
+scale = Vector2(0.7804987, 0.4805085)
+mouse_filter = 2
+
+[node name="ColorRect4" type="ColorRect" parent="Bg/Crown"]
+offset_left = 118.63123
+offset_top = 26.080786
+offset_right = 158.63124
+offset_bottom = 99.10142
+rotation = 1.3679811
+scale = Vector2(0.7804987, 0.4805085)
+mouse_filter = 2
+
+[node name="ColorRect7" type="ColorRect" parent="Bg/Crown"]
+offset_left = 98.16364
+offset_top = 62.91004
+offset_right = 138.16364
+offset_bottom = 135.93066
+rotation = 3.0075674
+scale = Vector2(0.31977838, 0.19686931)
+mouse_filter = 2
+
+[node name="ColorRect8" type="ColorRect" parent="Bg/Crown"]
+offset_left = 93.989334
+offset_top = 61.013256
+offset_right = 133.98932
+offset_bottom = 134.03387
+rotation = 3.0075674
+scale = Vector2(0.31977838, 0.19686931)
+mouse_filter = 2
+
+[node name="ColorRect9" type="ColorRect" parent="Bg/Crown"]
+offset_left = 90.7576
+offset_top = 53.426117
+offset_right = 130.75758
+offset_bottom = 126.44673
+rotation = 2.409757
+scale = Vector2(0.31977838, 0.19686931)
+mouse_filter = 2
+
+[node name="ColorRect10" type="ColorRect" parent="Bg/Crown"]
+offset_left = 77.56138
+offset_top = 40.622807
+offset_right = 117.56136
+offset_bottom = 113.64342
+rotation = 1.7651005
+scale = Vector2(0.31977838, 0.19686931)
+mouse_filter = 2
+
+[node name="ColorRect11" type="ColorRect" parent="Bg/Crown"]
+offset_left = 61.40276
+offset_top = 39.674423
+offset_right = 101.40274
+offset_bottom = 112.69504
+rotation = 1.1044455
+scale = Vector2(0.31977838, 0.19686931)
+mouse_filter = 2
+
+[node name="ColorRect5" type="ColorRect" parent="Bg/Crown"]
+offset_left = 49.82242
+offset_top = 22.919481
+offset_right = 89.822426
+offset_bottom = 95.94011
+rotation = 1.3784043
+scale = Vector2(0.7804987, 0.4805085)
+mouse_filter = 2
+
+[node name="ColorRect6" type="ColorRect" parent="Bg/Crown"]
+offset_left = -3.3663788
+offset_top = 24.02594
+offset_right = 36.63363
+offset_bottom = 97.04657
+rotation = 0.8423002
+scale = Vector2(0.7804987, 0.4805085)
+mouse_filter = 2
+
+[node name="ColorRect12" type="ColorRect" parent="Bg/Crown"]
+offset_left = 36.491558
+offset_top = 26.238855
+offset_right = 76.49157
+offset_bottom = 99.25948
+rotation = 1.5828488
+scale = Vector2(0.7804987, 0.4805085)
+mouse_filter = 2
+
+[node name="ColorRect13" type="ColorRect" parent="Bg/Crown"]
+offset_left = -9.021895
+offset_top = 31.771147
+offset_right = 30.978115
+offset_bottom = 104.79178
+rotation = 0.8490732
+scale = Vector2(0.7804987, 0.4805085)
+mouse_filter = 2
+
+[node name="ColorRect14" type="ColorRect" parent="Bg/Crown"]
+offset_left = 145.4276
+offset_top = 47.89382
+offset_right = 185.42761
+offset_bottom = 120.91445
+rotation = 1.4468093
+scale = Vector2(0.45846364, 0.2822499)
+mouse_filter = 2
+
+[node name="ColorRect15" type="ColorRect" parent="Bg/Crown"]
+offset_left = 132.2314
+offset_top = 47.261562
+offset_right = 172.23141
+offset_bottom = 120.282196
+rotation = 1.8095715
+scale = Vector2(0.45846364, 0.2822499)
+mouse_filter = 2
+
+[node name="TexFoliage0" type="Sprite2D" parent="Bg/Crown"]
+position = Vector2(48.879833, 60.697124)
+rotation = 1.4884648
+scale = Vector2(0.12706909, 0.12706909)
+texture = ExtResource("6_q3rjx")
+
+[node name="TexFoliage14" type="Sprite2D" parent="Bg/Crown"]
+position = Vector2(11.041728, 61.013256)
+rotation = 0.8287531
+scale = Vector2(0.12706909, 0.12706909)
+texture = ExtResource("6_q3rjx")
+
+[node name="TexFoliage15" type="Sprite2D" parent="Bg/Crown"]
+position = Vector2(112.30243, 63.858433)
+rotation = 1.3089969
+scale = Vector2(0.12706909, 0.12706909)
+texture = ExtResource("6_q3rjx")
+
+[node name="TexFoliage1" type="Sprite2D" parent="Bg/Crown"]
+position = Vector2(24.776554, 59.590668)
+rotation = 2.1675763
+scale = Vector2(0.11481586, -0.10846775)
+texture = ExtResource("6_q3rjx")
+
+[node name="TexFoliage2" type="Sprite2D" parent="Bg/Crown"]
+position = Vector2(95.8745, 68.44234)
+rotation = -1.7426435
+scale = Vector2(-0.12094925, -0.08727871)
+texture = ExtResource("7_6swd7")
+
+[node name="TexFoliage3" type="Sprite2D" parent="Bg/Crown"]
+position = Vector2(80.79311, 65.122955)
+rotation = 1.9959205
+scale = Vector2(0.08987137, 0.08987137)
+texture = ExtResource("8_7qvly")
+
+[node name="TexFoliage16" type="Sprite2D" parent="Bg/Crown"]
+position = Vector2(37.83811, 61.329388)
+rotation = 1.1593174
+scale = Vector2(0.08987137, 0.08987137)
+texture = ExtResource("8_7qvly")
+
+[node name="TexFoliage17" type="Sprite2D" parent="Bg/Crown"]
+position = Vector2(33.394485, 60.85519)
+rotation = 1.1593174
+scale = Vector2(0.08987137, 0.08987137)
+texture = ExtResource("8_7qvly")
+
+[node name="TexFoliage7" type="Sprite2D" parent="Bg/Crown"]
+position = Vector2(124.82536, 68.1262)
+rotation = 1.9959205
+scale = Vector2(0.08987137, 0.08987137)
+texture = ExtResource("8_7qvly")
+
+[node name="TexFoliage8" type="Sprite2D" parent="Bg/Crown"]
+position = Vector2(151.21779, 68.91654)
+rotation = 1.3720554
+scale = Vector2(0.09409887, 0.096711844)
+texture = ExtResource("8_7qvly")
+
+[node name="TexFoliage11" type="Sprite2D" parent="Bg/Crown"]
+position = Vector2(143.6771, 69.39072)
+rotation = 1.3720554
+scale = Vector2(0.09409887, 0.096711844)
+texture = ExtResource("8_7qvly")
+
+[node name="TexFoliage12" type="Sprite2D" parent="Bg/Crown"]
+position = Vector2(0.40396345, 70.497185)
+rotation = 1.0742774
+scale = Vector2(0.09409887, 0.096711844)
+texture = ExtResource("8_7qvly")
+
+[node name="TexFoliage13" type="Sprite2D" parent="Bg/Crown"]
+position = Vector2(20.063622, 61.329407)
+rotation = 1.9768813
+scale = Vector2(0.09409887, 0.096711844)
+texture = ExtResource("8_7qvly")
+
+[node name="TexFoliage4" type="Sprite2D" parent="Bg/Crown"]
+position = Vector2(75.00293, 60.06486)
+rotation = 2.345368
+scale = Vector2(0.08987137, 0.08987137)
+texture = ExtResource("8_7qvly")
+
+[node name="TexFoliage5" type="Sprite2D" parent="Bg/Crown"]
+position = Vector2(70.15536, 55.48096)
+rotation = 1.6835954
+scale = Vector2(0.08987137, 0.08987137)
+texture = ExtResource("8_7qvly")
+
+[node name="TexFoliage6" type="Sprite2D" parent="Bg/Crown"]
+position = Vector2(61.941395, 58.010014)
+rotation = 0.98033303
+scale = Vector2(0.08808546, 0.08808546)
+texture = ExtResource("7_6swd7")
+
+[node name="TexFoliage9" type="Sprite2D" parent="Bg/Crown"]
+position = Vector2(118.22726, 61.17132)
+rotation = 2.7334297
+scale = Vector2(0.052939333, 0.052939333)
+texture = ExtResource("6_q3rjx")
+
+[node name="TexFoliage10" type="Sprite2D" parent="Bg/Crown"]
+position = Vector2(136.00174, 70.65525)
+rotation = 1.6183147
+scale = Vector2(0.07791814, 0.06837254)
+texture = ExtResource("6_q3rjx")
+
+[node name="Eyes" type="Node2D" parent="Bg"]
+modulate = Color(1, 0, 0.83137256, 1)
+position = Vector2(893, 613)
+rotation = -0.037585422
+scale = Vector2(1.349888, -3.404889)
+script = ExtResource("9_7qvly")
+durOpen = 4.0
+durClosed = 0.3
+
+[node name="Sprite2D" type="Sprite2D" parent="Bg/Eyes"]
+position = Vector2(5.226312, -7.4254875)
+rotation = 0.23341244
+scale = Vector2(0.094522774, 0.065159105)
+texture = ExtResource("9_6swd7")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Bg/Eyes"]
+position = Vector2(67, -7.000001)
+rotation = -0.23089069
+scale = Vector2(0.094522774, 0.065159105)
+texture = ExtResource("9_6swd7")
+
+[node name="SoundSettings" type="Node" parent="." node_paths=PackedStringArray("_sliderSound", "_sliderMusic")]
+script = ExtResource("12_g8i7c")
+_sliderSound = NodePath("../sliderSound")
+_sliderMusic = NodePath("../sliderMusic")
+
+[node name="sliderSound" type="HSlider" parent="."]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 1000.0
+offset_right = 168.0
+offset_bottom = 1040.0
+scale = Vector2(3, 3)
+theme = ExtResource("3_rfqti")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="sliderSound"]
+modulate = Color(1, 0, 0.827451, 1)
+layout_mode = 0
+offset_top = -8.333354
+offset_right = 300.0
+offset_bottom = 41.00002
+scale = Vector2(0.5, 0.5)
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "[center]SOUND"
+
+[node name="sliderMusic" type="HSlider" parent="."]
+layout_mode = 0
+offset_left = 680.0
+offset_top = 1000.0
+offset_right = 830.0
+offset_bottom = 1040.0
+scale = Vector2(3, 3)
+theme = ExtResource("3_rfqti")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="sliderMusic"]
+modulate = Color(1, 0, 0.827451, 1)
+layout_mode = 0
+offset_top = -8.333354
+offset_right = 300.0
+offset_bottom = 41.00002
+scale = Vector2(0.5, 0.5)
+theme_override_font_sizes/normal_font_size = 32
+bbcode_enabled = true
+text = "[center]MUSIC"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 0, 0.827451, 1)
+position = Vector2(603, 206.99998)
+scale = Vector2(0.76852894, 0.76852894)
+texture = ExtResource("13_23t3j")

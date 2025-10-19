@@ -37,7 +37,7 @@ func _UpdateCircle():
 	var newPoints : Array[Vector2]
 	
 	for i in finalCount:
-		var vec = MathS.DegToVec(float(i) / float(finalCount) * 360)
+		var vec = MathS.DegToVec(float(i) / float(_pointCount) * 360)
 		newPoints.append(vec*_radius*Vector2(1,_squash))
 	
 	if finalCount ==_pointCount: #close circle

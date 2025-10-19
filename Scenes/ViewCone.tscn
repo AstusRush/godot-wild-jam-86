@@ -1,0 +1,37 @@
+[gd_scene load_steps=3 format=3 uid="uid://babt1dl42p274"]
+
+[ext_resource type="Script" uid="uid://deitiy5feo5o7" path="res://Scripts/ViewCone.gd" id="1_xecuy"]
+[ext_resource type="Script" uid="uid://cskx3cnrbphx1" path="res://Library/VisualEffects/DrawCircle.gd" id="2_r0fa8"]
+
+[node name="ViewCone" type="Node2D" node_paths=PackedStringArray("circ", "circScale", "borderLeft", "borderRight")]
+script = ExtResource("1_xecuy")
+circ = NodePath("DrawCircle")
+circScale = NodePath("DrawCircleScale")
+borderLeft = NodePath("BorderLeft")
+borderRight = NodePath("BorderRight")
+notDetectingOpacity = 0.1
+metadata/_custom_type_script = "uid://deitiy5feo5o7"
+
+[node name="DrawCircle" type="Line2D" parent="."]
+width = 30.0
+script = ExtResource("2_r0fa8")
+_fill = 0.5
+_pointCount = 360
+metadata/_custom_type_script = "uid://cskx3cnrbphx1"
+
+[node name="DrawCircleScale" type="Line2D" parent="."]
+width = 30.0
+script = ExtResource("2_r0fa8")
+_fill = 0.5
+_pointCount = 360
+metadata/_custom_type_script = "uid://cskx3cnrbphx1"
+
+[node name="BorderLeft" type="Line2D" parent="."]
+position = Vector2(-20, 16)
+points = PackedVector2Array(0, 0, 0, 0)
+width = 30.0
+
+[node name="BorderRight" type="Line2D" parent="."]
+position = Vector2(-20, 16)
+points = PackedVector2Array(0, 0, 0, 0)
+width = 30.0

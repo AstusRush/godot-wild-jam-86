@@ -26,6 +26,7 @@ var selectedT : float=0
 
 var selectedFace : Node2D
 
+
 func _enter_tree():
 	identity=enemy.identity
 	_spHair.modulate=identity.colorHair
@@ -43,6 +44,7 @@ func _enter_tree():
 	rotation_degrees=MathS.RandSigned()*totalRotationRange
 
 func _onDiscoverCorpse():
+	SoundSpawner.SpawnFromName("MaskCompromised")
 	_compromised=true
 	compromisedToggle.TriggerOn()
 	enemy=null
@@ -55,9 +57,15 @@ func setMaskInsideColor(col : Color):
 
 var targetPos : Vector2
 
+var _compT : float
+@export var compBuffer : float = 2
 var _compromised = false
 func IsCompromised():
-	return _compromised
+	return _compromised and _compT>compBuffer
+
+func _physics_process(delta: float):
+	if _compromised:
+		_compT+=delta
 
 
 func _process(delta: float):

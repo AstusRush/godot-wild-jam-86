@@ -1,18 +1,28 @@
-[gd_scene load_steps=15 format=3 uid="uid://c2fketo4xojpn"]
+[gd_scene load_steps=25 format=3 uid="uid://c2fketo4xojpn"]
 
 [ext_resource type="PackedScene" uid="uid://cg7pjf54rwrq1" path="res://Scenes/player.tscn" id="1_ebmjs"]
 [ext_resource type="Script" uid="uid://dshkgbsarahv5" path="res://Scripts/GameCamera.gd" id="1_wowpa"]
 [ext_resource type="Script" uid="uid://cgc4iakrvjk3m" path="res://Scripts/Paused.gd" id="2_qxrlw"]
 [ext_resource type="Script" uid="uid://ce6p4aodr01aw" path="res://Scripts/Player.gd" id="2_wrm1d"]
+[ext_resource type="Theme" uid="uid://ws7x6jjyhye1" path="res://mainTheme.tres" id="3_7t8sx"]
 [ext_resource type="Script" uid="uid://mq7doga6rtdm" path="res://Scripts/DeathScreen.gd" id="4_3dryh"]
 [ext_resource type="Script" uid="uid://xrgct08u1tg" path="res://Scripts/MaskHolder.gd" id="4_ldgsr"]
+[ext_resource type="Texture2D" uid="uid://bghl1k5t4axko" path="res://Sprites/Human/Tex_Circle.png" id="5_mg4q0"]
+[ext_resource type="Script" uid="uid://by8cjbwsnts8p" path="res://Scripts/HeartHolder.gd" id="5_nnt18"]
+[ext_resource type="Texture2D" uid="uid://cxyyvsakcwibo" path="res://Sprites/Tex_Heart.png" id="6_ewbju"]
 [ext_resource type="PackedScene" uid="uid://drblwsfw3rfuo" path="res://Scenes/mask.tscn" id="6_v158k"]
+[ext_resource type="Texture2D" uid="uid://b3nq8vgs51g6v" path="res://Sprites/Tex_Heart_Broken.png" id="7_85qyi"]
+[ext_resource type="PackedScene" uid="uid://dlaadek3e6f5m" path="res://Scenes/HungerBar.tscn" id="8_exi56"]
 [ext_resource type="PackedScene" uid="uid://bwbfhrx0wp02o" path="res://Scenes/monsterVisual.tscn" id="8_o5yvi"]
 [ext_resource type="PackedScene" uid="uid://2ky0lpmor8ix" path="res://Scenes/humanVisual.tscn" id="9_rku1e"]
 [ext_resource type="PackedScene" uid="uid://dkoupd5mv048d" path="res://Scenes/Layouts/Layout_0.tscn" id="10_o5yvi"]
 [ext_resource type="Script" uid="uid://dd3kah2hi2y2i" path="res://Scripts/MonsterBlob.gd" id="11_o5yvi"]
 [ext_resource type="Texture2D" uid="uid://b02wl1elcen5q" path="res://Sprites/Tex_MonsterBlobA.png" id="11_rku1e"]
+[ext_resource type="PackedScene" uid="uid://1h7i2ahv5fwn" path="res://Scenes/PlayerMaskIndicator.tscn" id="13_7nbq1"]
 [ext_resource type="Texture2D" uid="uid://b7peplao0gatr" path="res://Sprites/Tex_MonsterBlobB.png" id="13_rfjv2"]
+[ext_resource type="Script" uid="uid://cw86xetoywmny" path="res://Scripts/EnemySpawner.gd" id="14_1phco"]
+[ext_resource type="Script" uid="uid://dmb542wdu05lw" path="res://Scripts/Stats.gd" id="15_nb51f"]
+[ext_resource type="PackedScene" uid="uid://cs6ebdme1f3dv" path="res://Scenes/HostileAlarmIndicator.tscn" id="18_iivbl"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1l0tm"]
 radius = 66.4906
@@ -32,6 +42,7 @@ _zoomModFullCharged = 0.55
 [node name="Paused" type="Control" parent="Camera2D" node_paths=PackedStringArray("_btnContinue", "_btnRestart", "_btnReturn")]
 process_mode = 3
 visible = false
+z_index = 500
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -50,30 +61,45 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -109.5
-offset_top = -85.0
-offset_right = 109.5
-offset_bottom = 85.0
+offset_left = -500.0
+offset_top = -350.0
+offset_right = 500.0
+offset_bottom = 350.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 20
+theme_override_constants/separation = 100
 
 [node name="btnContinue" type="Button" parent="Camera2D/Paused/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 48
+theme = ExtResource("3_7t8sx")
+theme_override_font_sizes/font_size = 140
 text = "CONTINUE"
 
 [node name="btnRestart" type="Button" parent="Camera2D/Paused/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 48
+theme = ExtResource("3_7t8sx")
+theme_override_font_sizes/font_size = 140
 text = "RESTART"
 
 [node name="btnReturn" type="Button" parent="Camera2D/Paused/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 48
+theme = ExtResource("3_7t8sx")
+theme_override_font_sizes/font_size = 140
 text = "MENU"
 
+[node name="Darken" type="ColorRect" parent="Camera2D/Paused"]
+z_index = -1
+layout_mode = 0
+offset_left = -4158.0
+offset_top = -3617.0
+offset_right = -4118.0
+offset_bottom = -3577.0
+scale = Vector2(217.94374, 217.94374)
+mouse_filter = 2
+color = Color(0.0754, 0.26, 0.21692665, 0.27058825)
+
 [node name="DeathScreen" type="Control" parent="Camera2D" node_paths=PackedStringArray("_deathMessageLabel", "_statTimeAlive", "_statKillCount", "_retryPromptLabel", "_btnRetry", "_btnReturn")]
+z_index = 500
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -89,32 +115,37 @@ _btnRetry = NodePath("HBoxContainer/BtnRetry")
 _btnReturn = NodePath("HBoxContainer/BtnReturn")
 
 [node name="VBoxStats" type="VBoxContainer" parent="Camera2D/DeathScreen"]
+modulate = Color(0, 1, 0.2509804, 1)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -300.0
-offset_top = -182.0
-offset_right = 300.0
-offset_bottom = 90.0
+offset_left = -1000.0
+offset_top = -300.0
+offset_right = 1000.0
+offset_bottom = 100.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="timeAlive" type="RichTextLabel" parent="Camera2D/DeathScreen/VBoxStats"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_font_sizes/normal_font_size = 40
+theme_override_font_sizes/normal_font_size = 100
+bbcode_enabled = true
 text = "TIME SURVIVED"
 
 [node name="killCount" type="RichTextLabel" parent="Camera2D/DeathScreen/VBoxStats"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_font_sizes/normal_font_size = 40
-text = "KILL COUNT"
+theme_override_font_sizes/normal_font_size = 100
+bbcode_enabled = true
+text = "TIME SURVIVED"
 
 [node name="DeathMessage" type="RichTextLabel" parent="Camera2D/DeathScreen"]
+modulate = Color(0, 1, 0.2509804, 1)
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -122,16 +153,18 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -750.0
-offset_top = -307.0
+offset_top = -552.0
 offset_right = 750.0
-offset_bottom = -195.0
+offset_bottom = -325.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_font_sizes/normal_font_size = 80
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 160
 bbcode_enabled = true
 text = "[center]DEAD"
 
 [node name="RetryPrompt" type="RichTextLabel" parent="Camera2D/DeathScreen"]
+modulate = Color(0, 1, 0.2509804, 1)
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -141,34 +174,60 @@ anchor_bottom = 1.0
 offset_left = -750.0
 offset_top = 70.0
 offset_right = 750.0
-offset_bottom = 182.0
+offset_bottom = 307.0
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_font_sizes/normal_font_size = 70
+mouse_filter = 2
+theme_override_font_sizes/normal_font_size = 130
 bbcode_enabled = true
-text = "[center]Again?"
+text = "[center]AGAIN?"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Camera2D/DeathScreen"]
 layout_mode = 1
-anchors_preset = 5
+anchors_preset = 7
 anchor_left = 0.5
+anchor_top = 1.0
 anchor_right = 0.5
-offset_left = -200.0
-offset_top = 178.0
-offset_right = 200.0
-offset_bottom = 303.0
+anchor_bottom = 1.0
+offset_left = -400.0
+offset_top = 332.0
+offset_right = 400.0
+offset_bottom = 472.0
 grow_horizontal = 2
-theme_override_constants/separation = 54
+grow_vertical = 0
+theme_override_constants/separation = 200
 
 [node name="BtnRetry" type="Button" parent="Camera2D/DeathScreen/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme = ExtResource("3_7t8sx")
+theme_override_font_sizes/font_size = 80
 text = "AGAIN!"
 
 [node name="BtnReturn" type="Button" parent="Camera2D/DeathScreen/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+theme = ExtResource("3_7t8sx")
+theme_override_font_sizes/font_size = 80
 text = "MENU"
+
+[node name="Darken" type="ColorRect" parent="Camera2D/DeathScreen"]
+z_index = -1
+layout_mode = 0
+offset_left = -4158.0
+offset_top = -3617.0
+offset_right = -4118.0
+offset_bottom = -3577.0
+scale = Vector2(217.94374, 217.94374)
+mouse_filter = 2
+color = Color(1, 0, 0.8333335, 0.20784314)
+
+[node name="Sprite2D" type="Sprite2D" parent="Camera2D/DeathScreen"]
+modulate = Color(0.56, 0.10080001, 0.4987734, 0.5294118)
+z_index = -1
+rotation = 0.01254535
+scale = Vector2(3.15, 3.15)
+texture = ExtResource("5_mg4q0")
 
 [node name="MaskHolder" type="Control" parent="Camera2D"]
 process_mode = 3
@@ -177,12 +236,46 @@ layout_mode = 3
 anchors_preset = 0
 offset_top = 437.0
 offset_bottom = 437.0
+mouse_filter = 2
 script = ExtResource("4_ldgsr")
 distanceBetweenMasks = 500.0
 startMaskY = -400.0
 equipBoost = 50.0
 
-[node name="Player" parent="." node_paths=PackedStringArray("attackBox", "paused", "maskHolder", "monsterVisual", "humanVisual") instance=ExtResource("1_ebmjs")]
+[node name="HeartHolder" type="Node2D" parent="Camera2D"]
+z_index = 100
+position = Vector2(0, -628)
+scale = Vector2(-1.605, 1.605)
+script = ExtResource("5_nnt18")
+texNormal = ExtResource("6_ewbju")
+texBroken = ExtResource("7_85qyi")
+colorNormal = Color(0, 1, 0.2509804, 1)
+colorBroken = Color(0.4728, 0.48, 0.336, 1)
+
+[node name="Heart" type="Sprite2D" parent="Camera2D/HeartHolder"]
+position = Vector2(-175, -3)
+texture = ExtResource("6_ewbju")
+
+[node name="Heart2" type="Sprite2D" parent="Camera2D/HeartHolder"]
+position = Vector2(0, -3)
+texture = ExtResource("6_ewbju")
+
+[node name="Heart3" type="Sprite2D" parent="Camera2D/HeartHolder"]
+position = Vector2(175, -3)
+texture = ExtResource("6_ewbju")
+
+[node name="HungerBar" parent="Camera2D" instance=ExtResource("8_exi56")]
+z_index = 100
+position = Vector2(14, -838)
+iconOffset = 125.0
+colBgStarving = Color(0.37, 0.2331, 0.3677183, 1)
+colBgHealthy = Color(0.4745098, 0.47843137, 0.3372549, 1)
+colFillStarving = Color(1, 0, 0.9843137, 1)
+colFillHealthy = Color(0, 1, 0.2509804, 1)
+iconSinMag = 10.0
+iconSinSpeed = 5.0
+
+[node name="Player" parent="." node_paths=PackedStringArray("heartHolder", "attackBox", "maskHolder", "monsterVisual", "humanVisual") instance=ExtResource("1_ebmjs")]
 collision_mask = 5
 lock_rotation = true
 script = ExtResource("2_wrm1d")
@@ -197,19 +290,18 @@ lungeDrag = 5000
 lungeAccel = 400
 maxLungeCounterMod = 3.5
 maxLungeCharge = 0.8
+heartHolder = NodePath("../Camera2D/HeartHolder")
 attackBox = NodePath("AttackBox")
-paused = NodePath("../Camera2D/Paused")
 maskHolder = NodePath("../Camera2D/MaskHolder")
 maskPacked = ExtResource("6_v158k")
 monsterVisual = NodePath("MonsterVisual")
 humanVisual = NodePath("HumanVisual")
-
-[node name="AttackBox" type="Area2D" parent="Player"]
-collision_layer = 0
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/AttackBox"]
-shape = SubResource("CircleShape2D_1l0tm")
+hungerBaseDrain = 10.0
+killNutrition = 50
+maskNutrition = 100
+hungerCostLunge = 5
+starvationEndPercentage = 0.6
+hitInvincibilityDuration = 1.5
 
 [node name="MonsterVisual" parent="Player" node_paths=PackedStringArray("blobHolder") instance=ExtResource("8_o5yvi")]
 blobHolder = NodePath("../../BlobHolder")
@@ -220,6 +312,19 @@ colorActive = Color(0, 1, 0.2509804, 1)
 
 [node name="HumanVisual" parent="Player" instance=ExtResource("9_rku1e")]
 
+[node name="AttackBox" type="Area2D" parent="Player"]
+process_physics_priority = -100
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/AttackBox"]
+shape = SubResource("CircleShape2D_1l0tm")
+
+[node name="PlayerMaskIndicator" parent="Player" instance=ExtResource("13_7nbq1")]
+modulate = Color(0.99607843, 0.89411765, 0, 1)
+z_index = -1
+rotSpeed = 100.0
+
 [node name="LayoutBase" parent="." instance=ExtResource("10_o5yvi")]
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -228,6 +333,7 @@ offset_left = -20000.0
 offset_top = -20000.0
 offset_right = 20000.0
 offset_bottom = 20000.0
+mouse_filter = 2
 color = Color(0.41078004, 0.3384, 0.47, 1)
 
 [node name="BlobHolder" type="Node2D" parent="."]
@@ -301,3 +407,17 @@ metadata/_custom_type_script = "uid://dd3kah2hi2y2i"
 texture = ExtResource("13_rfjv2")
 script = ExtResource("11_o5yvi")
 metadata/_custom_type_script = "uid://dd3kah2hi2y2i"
+
+[node name="EnemySpawner" type="Node" parent="."]
+script = ExtResource("14_1phco")
+hostileAlarmIndicator = ExtResource("18_iivbl")
+typeStartCounts = Array[int]([5, 2, 0])
+typeFirstIncreaseTimestamp = Array[int]([10, 20, 40])
+typeIncreaseFrequency = Array[float]([10.0, 20.0, 30.0])
+typeMaxCounts = Array[int]([12, 6, 3])
+typeRespawnDuration = Array[float]([1.0, 2.0, 2.0])
+typeRespawnCurT = Array[float]([0.0, 0.0, 0.0])
+typeCurrentCount = Array[float]([0.0, 0.0, 0.0])
+
+[node name="Stats" type="Node" parent="."]
+script = ExtResource("15_nb51f")

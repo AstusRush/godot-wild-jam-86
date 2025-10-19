@@ -20,6 +20,7 @@ var _spHair : Sprite2D
 @export var texFeetWalk0 : Texture2D
 @export var texFeetWalk1 : Texture2D
 
+
 func _enter_tree():
 	_spFeet=get_child(0)
 	_spTorso=get_child(1)
@@ -33,6 +34,10 @@ func _ready():
 		if enemy.type == Level.EnemyType.Civilian:
 			var civilian : EnemyCivilian = enemy
 			applyIdentity(civilian.identity)
+		else:
+			_spHead.texture=load("res://Sprites/Human/Tex_Head_Guard.png")
+			_spTorso.texture=load("res://Sprites/Human/Tex_Torso_Guard.png")
+
 
 func applyIdentity(identity : HumanIdentity):
 	_spHead.modulate=identity.colorSkin

@@ -6,8 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://gpwko1lyrdwq" path="res://Sprites/Human/Face/Tex_Face_0.tres" id="3_7cpxp"]
 [ext_resource type="Texture2D" uid="uid://h2ofqkbe51qh" path="res://Sprites/Human/Hairstyles/Mask/Tex_Hair_Mask_1.png" id="4_7cpxp"]
 [ext_resource type="Texture2D" uid="uid://dp6y1m1dlsicw" path="res://Sprites/Human/Face/Tex_Face_1.tres" id="4_qd5pu"]
-[ext_resource type="Texture2D" uid="uid://bpwrtt0obc77l" path="res://icon.svg" id="5_7cpxp"]
 [ext_resource type="Texture2D" uid="uid://byfn35itwn13j" path="res://Sprites/Human/Face/Tex_Face_2.tres" id="5_ue75b"]
+[ext_resource type="Texture2D" uid="uid://be02xedjleie8" path="res://Sprites/Human/Tex_Mask_Indicator.png" id="8_6rdje"]
 
 [node name="Mask" type="Node2D" node_paths=PackedStringArray("_spHair", "_faces", "compromisedToggle", "squash", "posOffset")]
 z_index = 100
@@ -23,6 +23,7 @@ colorSelectedA = Color(1, 0, 0.9833331, 1)
 colorSelectedB = Color(0, 1, 0.25, 1)
 posOffset = NodePath("PosOffset")
 posOffsetRange = 7.0
+compBuffer = 1.0
 metadata/_custom_type_script = "uid://dlre676s26eiy"
 
 [node name="PosOffset" type="Node2D" parent="."]
@@ -150,7 +151,6 @@ scale = Vector2(1.3022631, 1.3950642)
 texture = ExtResource("4_7cpxp")
 
 [node name="CompromisedToggle" type="Node2D" parent="PosOffset"]
-visible = false
 scale = Vector2(0.99999994, 1)
 script = ExtResource("2_i8ixn")
 _startMode = 1
@@ -159,4 +159,7 @@ _easeIn = 3
 metadata/_custom_type_script = "uid://2jrrh6gpg23n"
 
 [node name="Sprite2D" type="Sprite2D" parent="PosOffset/CompromisedToggle"]
-texture = ExtResource("5_7cpxp")
+modulate = Color(0.8708334, 0.95, 0, 0.45490196)
+position = Vector2(0, -3.8910522)
+scale = Vector2(1.93, 2.177)
+texture = ExtResource("8_6rdje")

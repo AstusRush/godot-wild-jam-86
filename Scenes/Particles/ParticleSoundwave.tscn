@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://b7pihk60s8eaf"]
+
+[ext_resource type="Texture2D" uid="uid://bghl1k5t4axko" path="res://Sprites/Human/Tex_Circle.png" id="1_m2dha"]
+[ext_resource type="Script" uid="uid://3mlt7nrr3vr0" path="res://Library/VisualEffects/ParSelfFreeCPU.gd" id="1_mfxps"]
+
+[sub_resource type="Curve" id="Curve_m2dha"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 2.0049498, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_m2dha"]
+colors = PackedColorArray(1, 1, 1, 0.21960784, 1, 1, 1, 0)
+
+[node name="ParticleSoundwave" type="CPUParticles2D"]
+z_index = -2
+amount = 1
+texture = ExtResource("1_m2dha")
+lifetime = 0.6
+gravity = Vector2(0, 0)
+scale_amount_min = 8.0
+scale_amount_max = 8.0
+scale_amount_curve = SubResource("Curve_m2dha")
+color = Color(1, 0, 0.9843137, 1)
+color_ramp = SubResource("Gradient_m2dha")
+script = ExtResource("1_mfxps")
+metadata/_custom_type_script = "uid://3mlt7nrr3vr0"

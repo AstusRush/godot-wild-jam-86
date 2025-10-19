@@ -1,0 +1,64 @@
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://ws7x6jjyhye1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_re4k2"]
+bg_color = Color(0.06666667, 0.25882354, 0.21568628, 1)
+border_width_left = 15
+border_width_top = 15
+border_width_right = 15
+border_width_bottom = 15
+border_color = Color(1, 0, 0.827451, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+shadow_color = Color(0.42339998, 0.58, 0.54085, 0.38039216)
+shadow_size = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t3kcy"]
+bg_color = Color(0.07058824, 0.25882354, 0.21568628, 1)
+border_width_left = 15
+border_width_top = 15
+border_width_right = 15
+border_width_bottom = 15
+border_color = Color(0.06666667, 0.25882354, 0.21568628, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rs583"]
+bg_color = Color(1, 0, 0.83137256, 1)
+border_width_left = 15
+border_width_top = 15
+border_width_right = 15
+border_width_bottom = 15
+border_color = Color(1, 0, 0.827451, 1)
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+shadow_color = Color(0.42339998, 0.58, 0.54085, 0.39215687)
+shadow_size = 50
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o22io"]
+bg_color = Color(0.7859903, 9.8379256e-05, 0.64844495, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4gdb8"]
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.07058824, 0.25882354, 0.21568628, 1)
+
+[resource]
+Button/colors/font_color = Color(1, 0, 0.827451, 1)
+Button/colors/font_focus_color = Color(1, 0, 0.8235294, 1)
+Button/colors/font_hover_color = Color(1, 0, 0.8235294, 1)
+Button/colors/font_hover_pressed_color = Color(1, 1, 1, 1)
+Button/colors/font_pressed_color = Color(1, 1, 0.99607843, 1)
+Button/styles/hover = SubResource("StyleBoxFlat_re4k2")
+Button/styles/normal = SubResource("StyleBoxFlat_t3kcy")
+Button/styles/pressed = SubResource("StyleBoxFlat_rs583")
+HSlider/styles/grabber_area = SubResource("StyleBoxFlat_o22io")
+HSlider/styles/slider = SubResource("StyleBoxFlat_4gdb8")

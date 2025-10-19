@@ -7,10 +7,14 @@ extends Control
 
 func _enter_tree():
 	visible=false
+	Level.paused=self
+	Level.enemies.clear()
 	get_tree().paused=false
 	_btnContinue.pressed.connect(_onBtnContinuePressed)
 	_btnRestart.pressed.connect(_onBtnRestartPressed)
 	_btnReturn.pressed.connect(_onBtnReturnPressed)
+
+var disableOther : bool
 
 func _onBtnContinuePressed():
 	if not visible:
@@ -19,12 +23,18 @@ func _onBtnContinuePressed():
 	get_tree().paused=false
 
 func _onBtnRestartPressed():
+	if disableOther:
+		return
+	disableOther=true
 	if not visible:
 		return
 	TransitionManager.EV_TransitionCovered.connect(_onRetryTransitionCovered)
 	TransitionManager.TransitionStart()
 
 func _onBtnReturnPressed():
+	if disableOther:
+		return
+	disableOther=true
 	TransitionManager.EV_TransitionCovered.connect(_onReturnTransitionCovered)
 	TransitionManager.TransitionStart()
 
@@ -47,10 +57,13 @@ func _process(delta):
 			get_tree().paused=true
 
 @export var hitstopDuration : float = 0.04
-func hitstop():
-	Engine.time_scale=0
-	get_tree().create_timer(hitstopDuration,true,false,true).timeout.connect(_onTimeout)
-	
+@export var hitstopDurationLong : float = 0.2
 
+func hitstop():
+	Engine.time_scale=0.01
+	get_tree().create_timer(hitstopDuration,true,false,true).timeout.connect(_onTimeout)
+func hitstopLong():
+	Engine.time_scale=0.01
+	get_tree().create_timer(hitstopDurationLong,true,false,true).timeout.connect(_onTimeout)
 func _onTimeout():
 	Engine.time_scale=1

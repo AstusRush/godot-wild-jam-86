@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://cs6ebdme1f3dv"]
+
+[ext_resource type="Script" uid="uid://chmt5k6iybkrx" path="res://Scripts/HostileAlarmIndicator.gd" id="1_30aoa"]
+[ext_resource type="Script" uid="uid://2jrrh6gpg23n" path="res://Library/VisualEffects/SmoothToggle.gd" id="2_ajo0j"]
+[ext_resource type="Texture2D" uid="uid://dc8rwxv5yfpjx" path="res://Sprites/Human/Tex_HostileAlarmIndicator.png" id="3_f1wl6"]
+
+[node name="HostileAlarmIndicator" type="Node2D" node_paths=PackedStringArray("tog", "sp")]
+modulate = Color(0.8666667, 0, 1, 1)
+script = ExtResource("1_30aoa")
+tog = NodePath("SmoothToggle")
+sp = NodePath("SmoothToggle/Sprite2D")
+colA = Color(0.8666667, 0, 1, 1)
+colB = Color(0, 1, 0.2509804, 1)
+blinkFreq = 7.0
+
+[node name="SmoothToggle" type="Node2D" parent="."]
+script = ExtResource("2_ajo0j")
+_startMode = 1
+metadata/_custom_type_script = "uid://2jrrh6gpg23n"
+
+[node name="Sprite2D" type="Sprite2D" parent="SmoothToggle"]
+texture = ExtResource("3_f1wl6")

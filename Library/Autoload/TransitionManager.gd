@@ -1,7 +1,7 @@
 extends Node
 
-const TransitionDurationIn = 0.2
-const TransitionDurationOut = 0.2
+const TransitionDurationIn = 0
+const TransitionDurationOut = 0
 
 signal EV_TransitionFinished
 signal EV_TransitionCovered

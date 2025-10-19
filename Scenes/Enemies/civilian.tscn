@@ -1,25 +1,32 @@
-[gd_scene load_steps=6 format=3 uid="uid://cy8xoy4p76uee"]
+[gd_scene load_steps=7 format=3 uid="uid://cy8xoy4p76uee"]
 
 [ext_resource type="Script" uid="uid://ckhahww776rd" path="res://Scripts/EnemyCivilian.gd" id="1_85k2d"]
 [ext_resource type="PackedScene" uid="uid://2ky0lpmor8ix" path="res://Scenes/humanVisual.tscn" id="2_rt8xn"]
 [ext_resource type="PackedScene" uid="uid://bo6hp5kpie648" path="res://Scenes/humanCorpse.tscn" id="3_jhwsk"]
+[ext_resource type="PackedScene" uid="uid://babt1dl42p274" path="res://Scenes/ViewCone.tscn" id="4_rt8xn"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_1f0kj"]
 friction = 0.0
-bounce = 0.2
+bounce = 0.05
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1f0kj"]
 radius = 45.099888
 
-[node name="Civilian" type="RigidBody2D" node_paths=PackedStringArray("viewRotate", "nav")]
+[node name="Civilian" type="RigidBody2D" node_paths=PackedStringArray("viewRotate", "viewCone", "nav")]
 collision_layer = 2
 collision_mask = 4
 physics_material_override = SubResource("PhysicsMaterial_1f0kj")
 gravity_scale = 0.0
 lock_rotation = true
 script = ExtResource("1_85k2d")
+speedWander = 300.0
+speedPanic = 550.0
+maxWaitDuration = 1.5
+fieldOfView = 140.0
+viewRange = 600.0
 viewRotate = NodePath("Rotate")
-corpseDespawnTime = 10.0
+perceptiveness = 3.0
+viewCone = NodePath("Rotate/ViewCone")
 nav = NodePath("NavigationAgent2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -34,5 +41,12 @@ enemy = NodePath("../..")
 visible = false
 enemy = NodePath("../..")
 
+[node name="ViewCone" parent="Rotate" instance=ExtResource("4_rt8xn")]
+modulate = Color(0.72, 0.64320004, 0.2592, 1)
+z_index = -1
+notDetectingOpacity = 0.4
+
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 50.0
+target_desired_distance = 50.0
 path_max_distance = 1000.0

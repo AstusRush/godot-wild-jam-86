@@ -1,17 +1,19 @@
-[gd_scene load_steps=6 format=4 uid="uid://dkoupd5mv048d"]
+[gd_scene load_steps=7 format=4 uid="uid://dkoupd5mv048d"]
 
 [ext_resource type="Script" uid="uid://6nbh1l7masn" path="res://Scripts/Layout.gd" id="1_uq767"]
 [ext_resource type="TileSet" uid="uid://bwtu0mnnyftc8" path="res://tileset.tres" id="2_6amlk"]
 [ext_resource type="Texture2D" uid="uid://cmiw03ouhv6r" path="res://Sprites/Human/Tex_Foliage_0.tres" id="3_ruff5"]
 [ext_resource type="Texture2D" uid="uid://bysdmtakw41ya" path="res://Sprites/Human/Tex_Foliage_1.tres" id="4_fh5b7"]
+[ext_resource type="PackedScene" uid="uid://cq2wh5fkdkny6" path="res://Scenes/Door.tscn" id="5_jp2i7"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_ruff5"]
 vertices = PackedVector2Array(-1155.75, -1830.1484, -353.03125, -1849.9297, 540.7422, -1856.0703, 674.1406, -1725.1563, 365, -1730.1563, 132.90625, -1736, 1041, 1953.9297, 937, 1850.1719, 1166.1406, 1829.75, 1534.75, 1839.25, 1859.7109, 2191.5313, -1374.7266, 716.78906, -834.34375, 627.5781, -479.39063, 642.40625, -961.7578, 874.0469, -1833.1094, 869.9531, 729.0781, -454.84375, 1368.6094, -566.10156, 1569.0078, -564.09375, 1340.0469, -336.9922, 562.8906, -338.0078, 1423.3125, -1667.2578, 1668.1172, -1867.1797, 2195.0234, -1857.6016, 2043.0703, -1431.8828, 1767, -1435.1172, 1825.7031, 1331.5938, 1837.3281, 965.8594, 1929.0938, 734.9531, 2182.789, 1445.7969, 1847.8438, 1453.2188, 2191.1563, -814.03125, 2039.9297, -963.9531, 2190.2578, -571.97656, 2027.0625, -67.140625, 65.046875, -465.14844, -476.96094, 36.140625, -478.03906, -226.96875, 1378.3828, -816.02344, 1365.1563, -967.03906, 1570.0234, -60.859375, 1336.9531, 237.17188, 1421.9531, -1928.9688, 1665.1797, -2106.9688, 1153.8594, 975.1406, 937.1875, 1136.1328, 922.8125, 377.96875, -324.8203, 574.0078, -335.1875, 1142.1797, -970.22656, 1230.8984, 1480.3516, 737.0469, -553.15625, -1255.1094, -546.84375, -1652.1094, -327.82813, -1736, -334.17188, -1364.8594, -344.75, -1224.7578, 1467.6484, 376.21094, 965.9531, 230.82813, 547.25, -2100.7266, 677.1406, -1931.0313, 937, 1260.9375, 726.9219, -733.84375, -827.34375, 425.90625, -1381.2422, 480.14063, -1057.3906, 423.90625, -1939.2266, -641.84375, -1932.2422, -342.25, -2086.25, -346.04688, -2085.0938, -969.7422, -1656.7969, -646.15625, -1780.3672, -968.97656, -1538.1406, -652.9531, 365, -1361.0938, 136.09375, -1371.1328, -1043.1563, -1646.8906, -1170.25, -1240.7813, -1036.8438, -1249.8906, -461.6172, 170.97656, 567.1094, 38.046875, 966.9375, 36.046875, 578.2031, 379.03125, -1047.6172, 172.02344, -1519.9063, 21.867188, -2084.4063, -1336.25, -2083.9688, -1568.1719, -1769.9531, -1559.7266, -1766.6172, -1337.0313, -435.9297, 1578.2969, -439.0703, 2033.6719, -569.9531, 2029.9375, -572.0469, 1577.1094, -1175.2031, -2091.1094, -352.28906, -2095.711, -1188.0078, -1973.1406, -1525.6484, -1824.8594, -1771.9531, -1964.1484, -1546.3594, -1249.2266, -1532.8672, -1045.0781, -1833.0625, 1876.1094, -1831.25, 2186.3672, -2090.9766, 2186.0078, -2087.1563, 140.25781, 2024.0469, -571.0469, 1923.9063, 172.86719, 1678.5391, 176.11719, 1667.5313, 372.1797, 1041, 2190.3906, 1140.7188, -1669.8984, 1767, -1241.9688, 1360.8438, -1240.9766, 1131.7188, -1353.9063, -44.960938, -1232.25, 532.7031, -1040.0938, -138.27344, 2043.6484, -142.21094, 2188.7266, -1368.4063, 2187.0234, -1128.9297, 2033.0625, -1371.0938, 1870.8906, -1132.0703, 1570.8906, 274.35156, 1127.8828, 259.97656, 1265.0625, 30.828125, 1135.8281, 35.820313, 848.0703, 264.35156, 849.9219, -1375.0234, 1716.8203, -1374.0234, 1234.8984, -349.7422, -1036.0703, 574.2031, 573.0078, -1823.0469, 726.21094, 541.71094, -736.84375, -332.8203, 1362.1094, -336.8203, 1575.2813, -479.60938, -335.8125, -472.60156, -448.95313, -48.039063, -446.95313, 1546.7734, 1343.5781, 138.07813, 1959.9297, 261.02344, 1838.8281, 143.07813, 1356.8906, -1823.8906, 1725.1875, -1820.9531, 272.77344, -1672.1875, 136.92188, -1576.0391, 278.46094, -1525.0938, -520.78125, -1566.4531, 457.10938, -956.7422, -655.9375, -1275.2969, -526.21094, -948.75, -345.1875, -1266.2891, -228.96875, 61.953125, -1035.9063)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4, 5), PackedInt32Array(6, 7, 8, 9, 10), PackedInt32Array(11, 12, 13, 14, 15), PackedInt32Array(16, 17, 18, 19, 20), PackedInt32Array(21, 22, 23, 24, 25), PackedInt32Array(26, 27, 28, 29, 30), PackedInt32Array(24, 23, 31, 32), PackedInt32Array(33, 29, 28, 34), PackedInt32Array(35, 16, 20, 36, 37), PackedInt32Array(32, 31, 38, 39), PackedInt32Array(19, 18, 40, 41), PackedInt32Array(22, 21, 42, 43), PackedInt32Array(44, 8, 45, 46), PackedInt32Array(47, 48, 49, 14, 13), PackedInt32Array(50, 28, 27, 44), PackedInt32Array(51, 52, 53, 54, 55), PackedInt32Array(41, 56, 50, 44, 46, 57), PackedInt32Array(58, 43, 42, 59), PackedInt32Array(2, 58, 59, 3), PackedInt32Array(45, 8, 7, 60), PackedInt32Array(38, 17, 16, 61, 39), PackedInt32Array(62, 12, 11, 63, 64), PackedInt32Array(65, 66, 67, 68), PackedInt32Array(69, 65, 68, 70, 71), PackedInt32Array(4, 72, 73, 5), PackedInt32Array(0, 5, 53), PackedInt32Array(0, 53, 52, 74), PackedInt32Array(75, 0, 74, 76), PackedInt32Array(77, 78, 79, 57, 46, 80), PackedInt32Array(78, 77, 36, 20), PackedInt32Array(36, 77, 81, 82), PackedInt32Array(83, 84, 85, 86), PackedInt32Array(87, 88, 89, 90), PackedInt32Array(91, 92, 1, 0, 93), PackedInt32Array(93, 0, 94, 95), PackedInt32Array(85, 95, 94, 96, 86), PackedInt32Array(70, 86, 96, 97, 71), PackedInt32Array(98, 99, 100, 101), PackedInt32Array(34, 102, 33), PackedInt32Array(34, 28, 103), PackedInt32Array(40, 34, 103, 104), PackedInt32Array(41, 40, 104, 105, 56), PackedInt32Array(10, 106, 6), PackedInt32Array(107, 21, 25, 108, 109, 110), PackedInt32Array(111, 72, 110, 109, 39, 112), PackedInt32Array(54, 73, 72, 111, 55), PackedInt32Array(89, 88, 113, 114, 115, 116), PackedInt32Array(116, 115, 117, 118), PackedInt32Array(119, 45, 60, 120, 121), PackedInt32Array(121, 122, 123, 119), PackedInt32Array(124, 125, 49, 118, 117), PackedInt32Array(76, 51, 55, 126, 97, 75), PackedInt32Array(96, 75, 97), PackedInt32Array(80, 127, 47, 77), PackedInt32Array(13, 77, 47), PackedInt32Array(128, 11, 15), PackedInt32Array(61, 129, 112, 39), PackedInt32Array(49, 48, 130, 131, 87, 90, 118), PackedInt32Array(132, 133, 134), PackedInt32Array(9, 135, 26, 30, 10), PackedInt32Array(7, 6, 136, 137), PackedInt32Array(137, 136, 138, 120), PackedInt32Array(121, 120, 138, 130, 48), PackedInt32Array(124, 117, 98, 139), PackedInt32Array(139, 98, 101, 15), PackedInt32Array(128, 15, 101, 140), PackedInt32Array(140, 101, 141, 142), PackedInt32Array(141, 69, 71, 143, 82, 142), PackedInt32Array(63, 144, 142, 82, 81, 64), PackedInt32Array(143, 71, 145, 146), PackedInt32Array(146, 145, 147, 148), PackedInt32Array(37, 148, 147, 132), PackedInt32Array(35, 37, 132, 134), PackedInt32Array(35, 134, 111, 149), PackedInt32Array(149, 111, 112)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(2206, -2120, -2093, -2096, -2101, 2196, 2190, 2202)])
 
-[node name="Layout_0" type="Node2D"]
+[node name="Layout_0" type="Node2D" node_paths=PackedStringArray("doors")]
 script = ExtResource("1_uq767")
+doors = NodePath("Doors")
 metadata/_custom_type_script = "uid://6nbh1l7masn"
 
 [node name="TileMapMain" type="TileMapLayer" parent="."]
@@ -969,3 +971,22 @@ texture = ExtResource("4_fh5b7")
 position = Vector2(-2049, -2068)
 rotation = 1.3089969
 texture = ExtResource("4_fh5b7")
+
+[node name="Doors" type="Node2D" parent="."]
+
+[node name="Door" parent="Doors" instance=ExtResource("5_jp2i7")]
+position = Vector2(-1152, -637)
+
+[node name="Door2" parent="Doors" instance=ExtResource("5_jp2i7")]
+position = Vector2(571, -832)
+rotation = -1.5707964
+
+[node name="Door3" parent="Doors" instance=ExtResource("5_jp2i7")]
+position = Vector2(-99, -1834)
+
+[node name="Door4" parent="Doors" instance=ExtResource("5_jp2i7")]
+position = Vector2(681, 1230)
+rotation = -3.1415927
+
+[node name="Door5" parent="Doors" instance=ExtResource("5_jp2i7")]
+position = Vector2(-1175, 1272)
