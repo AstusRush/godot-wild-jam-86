@@ -17,6 +17,8 @@ var _chaseT : float
 var _timeSinceLos : float
 
 var patrolTarget : Vector2
+signal EV_ChaseStart
+signal EV_ChaseEnd
 
 
 @export var maxWaitDuration : float = 4
@@ -58,6 +60,7 @@ func chase():
 	curState=HosState.Chase
 	_chaseT=0
 	speed=speedChaseStart
+	EV_ChaseStart.emit()
 
 func discoverCorpse(corpse : Enemy):
 	corpse.bodyFound()
@@ -91,7 +94,23 @@ func _onAttackHitboxBodyExited(body : Node):
 	playerInside=false
 
 
-
+func instantDetectCheck():
+	var dirToPlayer = position.direction_to(Level.player.position)
+	var angleToPlayer : float = rad_to_deg(dirToPlayer.angle_to(_lookingDir))
+	if abs(angleToPlayer)<=fieldOfView/2: # is the player within the field of view?
+		var distToPlayer = position.distance_to(Level.player.position)
+		if distToPlayer <= viewRange : # is the player close enough
+			# are there no obstacles in the way
+			var colMask = 4 # collision mask should only detectPlayerStep walls
+			var query = PhysicsRayQueryParameters2D.create(position, Level.player.position,colMask)
+			var spaceState = get_world_2d().direct_space_state
+			var result : Dictionary = spaceState.intersect_ray(query)
+			if result.is_empty(): # are there no walls blocking the view?
+				chase()
+				if Level.player.getEquippedMask()!=null:
+					var en = Level.player.getEquippedMask().enemy
+					if en != null:
+						en.bodyFound()
 
 func spawnSwingEffect():
 	var swing : FadeSprite = swingWeaponEffect.instantiate()
@@ -141,6 +160,7 @@ func _physics_process(delta):
 				speed = lerp(speedChaseStart, speedChaseEnd,min(_chaseT/chaseDecayDur,1))
 			if _timeSinceLos >= chaseEndDur:
 				wait()
+				EV_ChaseEnd.emit()
 			if Level.player.isDead():
 				wait()
 

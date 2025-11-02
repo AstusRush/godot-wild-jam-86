@@ -38,7 +38,6 @@ func _ready():
 			_spHead.texture=load("res://Sprites/Human/Tex_Head_Guard.png")
 			_spTorso.texture=load("res://Sprites/Human/Tex_Torso_Guard.png")
 
-
 func applyIdentity(identity : HumanIdentity):
 	_spHead.modulate=identity.colorSkin
 	_spTorso.modulate=identity.colorClothing
@@ -63,3 +62,7 @@ func _process(delta: float):
 		_animD+=_movementDeltaMag
 		_spTorso.rotation_degrees=sin(_animD*torsoWiggleSpeed)*torsoWiggleMag
 		_spFeet.texture = texFeetWalk0 if sin(_animD*feetAnimSpeed) > 0 else texFeetWalk1
+
+	if enemy == null:
+		if Level.player.getEquippedMask()!=null:
+			applyIdentity(Level.player.getEquippedMask().identity)

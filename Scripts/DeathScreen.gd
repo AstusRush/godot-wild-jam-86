@@ -31,6 +31,9 @@ func _onBtnReturnPressed():
 	TransitionManager.EV_TransitionCovered.connect(_onReturnTransitionCovered)
 	TransitionManager.TransitionStart()
 
+func _process(delta: float):
+	if visible and Input.is_action_just_pressed("Paused"):
+		_onBtnReturnPressed()
 
 func _onRetryTransitionCovered():
 	get_tree().reload_current_scene()

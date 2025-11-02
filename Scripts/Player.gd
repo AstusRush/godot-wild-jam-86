@@ -21,6 +21,8 @@ var movementAxis=Vector2.ZERO
 
 @export var heartHolder : HeartHolder
 
+@export var squash : SquashAnchor
+
 var _curLungeCharge = -1
 
 @export var attackBox : Area2D
@@ -207,6 +209,7 @@ func growl():
 	EV_Growl.emit()
 	var hostiles : Array[Enemy] = Level.getEnemiesHostile()
 	for h : EnemyHostile in hostiles:
+		h.instantDetectCheck()
 		h.alarm()
 	_growlT=0
 	ParticleSpawner.SpawnFromName("Soundwave",Level.player.position)
@@ -227,6 +230,7 @@ func _lungeRelease():
 	linear_velocity = Level.camera.getMouseDir() * finalSpeed
 	EV_LungeRelease.emit()
 	_curLungeCharge=-1 # reset charge state to not charging
+	squash.TriggerStretch(squash.Medium)
 
 func isChargingLunge():
 	return _curLungeCharge >= 0
@@ -332,7 +336,10 @@ func cycleMask(dir:int):
 		newIdx = masks.size()-1
 	elif newIdx > masks.size()-1:
 		newIdx=0
-	
+	if masks.size()>1:
+		SoundSpawner.SpawnFromName("MaskSwap")
+		squash.TriggerSquash(squash.Medium)
+
 	equipMask(newIdx)
 
 

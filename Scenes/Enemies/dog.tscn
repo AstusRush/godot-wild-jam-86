@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://b3ymav0ryddfq"]
+[gd_scene load_steps=10 format=3 uid="uid://b3ymav0ryddfq"]
 
 [ext_resource type="Script" uid="uid://dooomoku30e24" path="res://Scripts/EnemyHostile.gd" id="1_kgpjk"]
 [ext_resource type="PackedScene" uid="uid://3pm6ymo4cn1m" path="res://Scenes/AttackSwing.tscn" id="2_18yac"]
 [ext_resource type="PackedScene" uid="uid://bo6hp5kpie648" path="res://Scenes/humanCorpse.tscn" id="3_sjkhx"]
 [ext_resource type="PackedScene" uid="uid://babt1dl42p274" path="res://Scenes/ViewCone.tscn" id="4_yu52a"]
 [ext_resource type="PackedScene" uid="uid://brnr6jjw1td4j" path="res://Scenes/dogVisual.tscn" id="5_18yac"]
+[ext_resource type="PackedScene" uid="uid://bpfooe868p1sd" path="res://Scenes/AttackDanger.tscn" id="6_sjkhx"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_1f0kj"]
 friction = 0.0
@@ -27,14 +28,14 @@ speedChaseStart = 600.0
 speedChaseEnd = 600.0
 chaseEndDur = 0.5
 attackHitbox = NodePath("AttackHitbox")
-targetDistanceToPlayer = 120.0
+targetDistanceToPlayer = 90.0
 swingWeaponEffect = ExtResource("2_18yac")
 type = 2
 fieldOfView = 360.0
 viewRange = 600.0
 seeThroughMask = true
 viewRotate = NodePath("Rotate")
-perceptiveness = 3.0
+perceptiveness = 2.5
 viewCone = NodePath("Rotate/ViewCone")
 nav = NodePath("NavigationAgent2D")
 
@@ -66,3 +67,6 @@ path_max_distance = 1000.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackHitbox"]
 shape = SubResource("CircleShape2D_kgpjk")
+
+[node name="AttackDanger" parent="." node_paths=PackedStringArray("enemy") instance=ExtResource("6_sjkhx")]
+enemy = NodePath("..")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://c2fketo4xojpn"]
+[gd_scene load_steps=29 format=3 uid="uid://c2fketo4xojpn"]
 
 [ext_resource type="PackedScene" uid="uid://cg7pjf54rwrq1" path="res://Scenes/player.tscn" id="1_ebmjs"]
 [ext_resource type="Script" uid="uid://dshkgbsarahv5" path="res://Scripts/GameCamera.gd" id="1_wowpa"]
@@ -18,11 +18,20 @@
 [ext_resource type="PackedScene" uid="uid://dkoupd5mv048d" path="res://Scenes/Layouts/Layout_0.tscn" id="10_o5yvi"]
 [ext_resource type="Script" uid="uid://dd3kah2hi2y2i" path="res://Scripts/MonsterBlob.gd" id="11_o5yvi"]
 [ext_resource type="Texture2D" uid="uid://b02wl1elcen5q" path="res://Sprites/Tex_MonsterBlobA.png" id="11_rku1e"]
+[ext_resource type="Shader" uid="uid://d26vf4r223xqm" path="res://Scenes/vignette.gdshader" id="11_vm72l"]
+[ext_resource type="Script" uid="uid://dlqa5hi2pax4c" path="res://Scripts/HidingVignette.gd" id="12_22asu"]
 [ext_resource type="PackedScene" uid="uid://1h7i2ahv5fwn" path="res://Scenes/PlayerMaskIndicator.tscn" id="13_7nbq1"]
 [ext_resource type="Texture2D" uid="uid://b7peplao0gatr" path="res://Sprites/Tex_MonsterBlobB.png" id="13_rfjv2"]
 [ext_resource type="Script" uid="uid://cw86xetoywmny" path="res://Scripts/EnemySpawner.gd" id="14_1phco"]
 [ext_resource type="Script" uid="uid://dmb542wdu05lw" path="res://Scripts/Stats.gd" id="15_nb51f"]
+[ext_resource type="Script" uid="uid://d32ri4dl0odrr" path="res://Library/VisualEffects/SquashAnchor.gd" id="16_fkdbe"]
 [ext_resource type="PackedScene" uid="uid://cs6ebdme1f3dv" path="res://Scenes/HostileAlarmIndicator.tscn" id="18_iivbl"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_22asu"]
+shader = ExtResource("11_vm72l")
+shader_parameter/b = 0.999999977648
+shader_parameter/maxA = 0.5999999865888
+shader_parameter/p = 2.89
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1l0tm"]
 radius = 66.4906
@@ -190,9 +199,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -400.0
-offset_top = 332.0
+offset_top = 327.0
 offset_right = 400.0
-offset_bottom = 472.0
+offset_bottom = 513.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/separation = 200
@@ -275,7 +284,20 @@ colFillHealthy = Color(0, 1, 0.2509804, 1)
 iconSinMag = 10.0
 iconSinSpeed = 5.0
 
-[node name="Player" parent="." node_paths=PackedStringArray("heartHolder", "attackBox", "maskHolder", "monsterVisual", "humanVisual") instance=ExtResource("1_ebmjs")]
+[node name="HidingVignette" type="ColorRect" parent="Camera2D"]
+modulate = Color(0.16138157, 0.015231367, 0.13860077, 1)
+z_index = 50
+material = SubResource("ShaderMaterial_22asu")
+offset_left = -640.0
+offset_top = -622.0
+offset_right = 680.0
+offset_bottom = 651.0
+mouse_filter = 2
+script = ExtResource("12_22asu")
+fadeInSpeed = 2.5
+fadeOutSpeed = 5.0
+
+[node name="Player" parent="." node_paths=PackedStringArray("heartHolder", "squash", "attackBox", "maskHolder", "monsterVisual", "humanVisual") instance=ExtResource("1_ebmjs")]
 collision_mask = 5
 lock_rotation = true
 script = ExtResource("2_wrm1d")
@@ -291,26 +313,31 @@ lungeAccel = 400
 maxLungeCounterMod = 3.5
 maxLungeCharge = 0.8
 heartHolder = NodePath("../Camera2D/HeartHolder")
+squash = NodePath("SquashAnchor")
 attackBox = NodePath("AttackBox")
 maskHolder = NodePath("../Camera2D/MaskHolder")
 maskPacked = ExtResource("6_v158k")
-monsterVisual = NodePath("MonsterVisual")
-humanVisual = NodePath("HumanVisual")
-hungerBaseDrain = 10.0
+monsterVisual = NodePath("SquashAnchor/MonsterVisual")
+humanVisual = NodePath("SquashAnchor/HumanVisual")
+hungerBaseDrain = 8.5
 killNutrition = 50
 maskNutrition = 100
-hungerCostLunge = 5
 starvationEndPercentage = 0.6
-hitInvincibilityDuration = 1.5
+hitInvincibilityDuration = 2.5
 
-[node name="MonsterVisual" parent="Player" node_paths=PackedStringArray("blobHolder") instance=ExtResource("8_o5yvi")]
-blobHolder = NodePath("../../BlobHolder")
+[node name="SquashAnchor" type="Node2D" parent="Player"]
+script = ExtResource("16_fkdbe")
+duration = 0.15
+metadata/_custom_type_script = "uid://d32ri4dl0odrr"
+
+[node name="MonsterVisual" parent="Player/SquashAnchor" node_paths=PackedStringArray("blobHolder") instance=ExtResource("8_o5yvi")]
+blobHolder = NodePath("../../../BlobHolder")
 spinSpeed = 150.0
 pulsateStrength = 0.2
 colorNormal = Color(1, 0, 0.9843137, 1)
 colorActive = Color(0, 1, 0.2509804, 1)
 
-[node name="HumanVisual" parent="Player" instance=ExtResource("9_rku1e")]
+[node name="HumanVisual" parent="Player/SquashAnchor" instance=ExtResource("9_rku1e")]
 
 [node name="AttackBox" type="Area2D" parent="Player"]
 process_physics_priority = -100
@@ -329,10 +356,10 @@ rotSpeed = 100.0
 
 [node name="ColorRect" type="ColorRect" parent="."]
 z_index = -10
-offset_left = -20000.0
-offset_top = -20000.0
-offset_right = 20000.0
-offset_bottom = 20000.0
+offset_left = -20327.0
+offset_top = -19607.0
+offset_right = 19673.0
+offset_bottom = 20393.0
 mouse_filter = 2
 color = Color(0.41078004, 0.3384, 0.47, 1)
 
@@ -411,10 +438,10 @@ metadata/_custom_type_script = "uid://dd3kah2hi2y2i"
 [node name="EnemySpawner" type="Node" parent="."]
 script = ExtResource("14_1phco")
 hostileAlarmIndicator = ExtResource("18_iivbl")
-typeStartCounts = Array[int]([5, 2, 0])
-typeFirstIncreaseTimestamp = Array[int]([10, 20, 40])
-typeIncreaseFrequency = Array[float]([10.0, 20.0, 30.0])
-typeMaxCounts = Array[int]([12, 6, 3])
+typeStartCounts = Array[int]([4, 2, 0])
+typeFirstIncreaseTimestamp = Array[int]([15, 35, 20])
+typeIncreaseFrequency = Array[float]([10.0, 25.0, 35.0])
+typeMaxCounts = Array[int]([9, 6, 3])
 typeRespawnDuration = Array[float]([1.0, 2.0, 2.0])
 typeRespawnCurT = Array[float]([0.0, 0.0, 0.0])
 typeCurrentCount = Array[float]([0.0, 0.0, 0.0])

@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://bgwxtcff0nefn"]
 
 [node name="SoundPlayer" type="AudioStreamPlayer"]
+volume_db = -34.0
 autoplay = true
-bus = &"Main"
+bus = &"Sound"

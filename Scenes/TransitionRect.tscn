@@ -4,16 +4,17 @@
 script/source = "extends ColorRect
 
 func _ready():
-    TransitionManager.EV_VisualsUpdate.connect(_onVisualsUpdate)
-    visible=true
+	TransitionManager.EV_VisualsUpdate.connect(_onVisualsUpdate)
+	visible=true
 
 func _onVisualsUpdate(prog,modeIn):
-    var a : float
-    
-    modulate.a=a
+	var a : float
+	
+	modulate.a=a
 
 func _process(delta: float):
-    print(get_parent().name)"
+	print(get_parent().name)
+"
 
 [node name="TransitionRect" type="ColorRect"]
 z_index = 4000

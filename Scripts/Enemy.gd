@@ -116,11 +116,12 @@ func _physics_process(delta):
 		linear_velocity=Vector2.ZERO
 
 func detectPlayerStep(delta, distToPlayer):
+	if not percieving:
+		return
+	
 	if curPerception==0:
 		SoundSpawner.SpawnFromName("DetectionStart",0.1)
 	
-	if not percieving:
-		return
 	if curPerception >= 1:
 		return
 	curPerception+=delta*perceptiveness
@@ -132,7 +133,6 @@ func discoverPlayer():
 	pass
 func discoverCorpse(corpse : Enemy):
 	pass
-
 
 func hit(impactForce : Vector2):
 	if not _dead:

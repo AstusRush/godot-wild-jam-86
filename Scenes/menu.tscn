@@ -1,7 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://dwqh5wc578an"]
+[gd_scene load_steps=15 format=3 uid="uid://dwqh5wc578an"]
 
 [ext_resource type="Script" uid="uid://dugppfknf3ahk" path="res://Scripts/Menu.gd" id="1_1rerr"]
 [ext_resource type="PackedScene" uid="uid://c2fketo4xojpn" path="res://Scenes/game.tscn" id="2_xhh6f"]
+[ext_resource type="PackedScene" uid="uid://cye3263gyyh56" path="res://Scenes/Tutorial.tscn" id="3_8ph6h"]
 [ext_resource type="Theme" uid="uid://ws7x6jjyhye1" path="res://mainTheme.tres" id="3_rfqti"]
 [ext_resource type="Texture2D" uid="uid://bjl22uwx5f68w" path="res://Sprites/Human/Tilemap.png" id="3_wwsa2"]
 [ext_resource type="Texture2D" uid="uid://cgsveqpxcabie" path="res://Sprites/Menu/Tex_Trunk_A.png" id="4_jsrd8"]
@@ -14,7 +15,7 @@
 [ext_resource type="Script" uid="uid://b4lkd7qnfdmqd" path="res://Scripts/SoundSettings.gd" id="12_g8i7c"]
 [ext_resource type="Texture2D" uid="uid://dtltfc36c22ap" path="res://Sprites/Tex_Title.png" id="13_23t3j"]
 
-[node name="Menu" type="Control" node_paths=PackedStringArray("_btnBegin", "_labelCredits")]
+[node name="Menu" type="Control" node_paths=PackedStringArray("_btnBegin", "_btnHelp", "_labelCredits")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -23,8 +24,10 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_1rerr")
 _btnBegin = NodePath("Begin")
+_btnHelp = NodePath("Tutorial")
 _labelCredits = NodePath("Credits")
 _playTransitionScene = ExtResource("2_xhh6f")
+_helpTransitionScene = ExtResource("3_8ph6h")
 
 [node name="Begin" type="Button" parent="."]
 layout_mode = 1
@@ -33,15 +36,32 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -135.0
-offset_top = -57.0
-offset_right = 136.0
-offset_bottom = 110.0
+offset_left = -372.0
+offset_top = 21.0
+offset_right = -101.0
+offset_bottom = 188.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("3_rfqti")
 theme_override_font_sizes/font_size = 100
 text = "PLAY"
+
+[node name="Tutorial" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 101.0
+offset_top = 21.0
+offset_right = 378.0
+offset_bottom = 188.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_rfqti")
+theme_override_font_sizes/font_size = 100
+text = "HELP"
 
 [node name="Credits" type="RichTextLabel" parent="."]
 modulate = Color(1, 0, 0.827451, 1)
@@ -51,10 +71,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -455.0
-offset_top = 243.0
-offset_right = 437.0
-offset_bottom = 529.0
+offset_left = -559.0
+offset_top = 220.0
+offset_right = 549.0
+offset_bottom = 506.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/normal_font_size = 40
@@ -95,6 +115,13 @@ modulate = Color(0.25027627, 0.138946, 0.23167178, 1)
 position = Vector2(24, -285)
 scale = Vector2(0.99092466, 1.1809549)
 
+[node name="TexTrunkB5" type="Sprite2D" parent="Bg/Trunks"]
+modulate = Color(0.7792914, 0.7792914, 0.7792913, 1)
+position = Vector2(277.5186, 946.6915)
+rotation = -3.1049273
+scale = Vector2(0.35761228, -1.304337)
+texture = ExtResource("5_wbdvm")
+
 [node name="TexTrunkA" type="Sprite2D" parent="Bg/Trunks"]
 position = Vector2(169, 907)
 scale = Vector2(1, 1.0966667)
@@ -103,12 +130,6 @@ texture = ExtResource("4_jsrd8")
 [node name="TexTrunkB" type="Sprite2D" parent="Bg/Trunks"]
 position = Vector2(1068, 905)
 scale = Vector2(1, 1.1187685)
-texture = ExtResource("5_wbdvm")
-
-[node name="TexTrunkB5" type="Sprite2D" parent="Bg/Trunks"]
-modulate = Color(0.7792914, 0.7792914, 0.7792913, 1)
-position = Vector2(498, 952)
-scale = Vector2(-0.35761225, 1.304337)
 texture = ExtResource("5_wbdvm")
 
 [node name="TexTrunkB2" type="Sprite2D" parent="Bg/Trunks"]
@@ -130,7 +151,7 @@ scale = Vector2(0.44031563, 1.247356)
 texture = ExtResource("5_wbdvm")
 
 [node name="TexTrunkB4" type="Sprite2D" parent="Bg/Trunks"]
-position = Vector2(801.99994, 895)
+position = Vector2(997.0486, 897.57855)
 rotation = -0.12748687
 scale = Vector2(0.44031563, 1.247356)
 texture = ExtResource("5_wbdvm")
@@ -380,7 +401,7 @@ texture = ExtResource("6_q3rjx")
 
 [node name="Eyes" type="Node2D" parent="Bg"]
 modulate = Color(1, 0, 0.83137256, 1)
-position = Vector2(893, 613)
+position = Vector2(502, 522)
 rotation = -0.037585422
 scale = Vector2(1.349888, -3.404889)
 script = ExtResource("9_7qvly")
@@ -388,12 +409,14 @@ durOpen = 4.0
 durClosed = 0.3
 
 [node name="Sprite2D" type="Sprite2D" parent="Bg/Eyes"]
+visible = false
 position = Vector2(5.226312, -7.4254875)
 rotation = 0.23341244
 scale = Vector2(0.094522774, 0.065159105)
 texture = ExtResource("9_6swd7")
 
 [node name="Sprite2D2" type="Sprite2D" parent="Bg/Eyes"]
+visible = false
 position = Vector2(67, -7.000001)
 rotation = -0.23089069
 scale = Vector2(0.094522774, 0.065159105)

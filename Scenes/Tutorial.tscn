@@ -1,0 +1,237 @@
+[gd_scene load_steps=8 format=3 uid="uid://cye3263gyyh56"]
+
+[ext_resource type="Script" uid="uid://vk2c36t62g7u" path="res://Scripts/Tutorial.gd" id="1_wduq8"]
+[ext_resource type="Texture2D" uid="uid://cp3jylk06ifd3" path="res://Sprites/Slides/Tex_Slide1.png" id="2_2o727"]
+[ext_resource type="Texture2D" uid="uid://dllixcwvadiwr" path="res://Sprites/Slides/Tex_Slide3.png" id="3_uo1fs"]
+[ext_resource type="Texture2D" uid="uid://dfb667hvh32l" path="res://Sprites/Slides/Tex_Slide2_P.png" id="4_7bloo"]
+[ext_resource type="Texture2D" uid="uid://fkeqxx4yo4w6" path="res://Sprites/Slides/Tex_Slide2_G.png" id="4_rlm2d"]
+[ext_resource type="Texture2D" uid="uid://3gh5k2gd3ybn" path="res://Sprites/Slides/Tex_Slide5.png" id="6_3j26a"]
+[ext_resource type="Texture2D" uid="uid://bbht6ronpieer" path="res://Sprites/Slides/Tex_Slide6.png" id="7_x7a1n"]
+
+[node name="Tutorial" type="Control" node_paths=PackedStringArray("slides")]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_wduq8")
+transitionInDur = 0.3
+transitionOutDur = 0.3
+minSlideTime = 0.2
+slides = [NodePath("Slide1"), NodePath("Slide2"), NodePath("Slide3"), NodePath("Slide4"), NodePath("Slide5"), NodePath("Slide6")]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = -105.0
+offset_top = -96.0
+offset_right = 1252.0
+offset_bottom = 1287.0
+color = Color(0.2509804, 0.13725491, 0.22745098, 1)
+
+[node name="Slide1" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TexSlide1" type="Sprite2D" parent="Slide1"]
+position = Vector2(572, 466)
+scale = Vector2(0.74084264, 0.74084264)
+texture = ExtResource("2_2o727")
+
+[node name="Node2D" type="Node2D" parent="Slide1"]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Slide1/Node2D"]
+modulate = Color(0, 1, 0.2509804, 1)
+offset_left = 9.0
+offset_top = 19.0
+offset_right = 1152.0
+offset_bottom = 161.0
+theme_override_font_sizes/normal_font_size = 60
+bbcode_enabled = true
+text = "[center]OH MY!"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="Slide1/Node2D"]
+modulate = Color(0, 1, 0.2509804, 1)
+offset_top = 799.0
+offset_right = 1152.0
+offset_bottom = 993.0
+theme_override_font_sizes/normal_font_size = 60
+bbcode_enabled = true
+text = "[center]ARE YOU CRAVING HUMAN FLESH?"
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="Slide1/Node2D"]
+modulate = Color(0, 1, 0.2509804, 1)
+offset_top = 927.0
+offset_right = 1152.0
+offset_bottom = 1177.0
+theme_override_font_sizes/normal_font_size = 60
+bbcode_enabled = true
+text = "[center]PLEASE ALLOW ME TO TEACH YOU PROPER DINING ETIQUETTE FIRST!"
+
+[node name="Slide2" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Node2D" type="Node2D" parent="Slide2"]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Slide2/Node2D"]
+modulate = Color(0, 1, 0.2509804, 1)
+offset_left = 9.0
+offset_top = 19.0
+offset_right = 1152.0
+offset_bottom = 191.0
+theme_override_font_sizes/normal_font_size = 60
+bbcode_enabled = true
+text = "[center]HUMANS COME IN TWO FLAVOURS : PEASANT AND GUARD!"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="Slide2/Node2D"]
+modulate = Color(0, 1, 0.2509804, 1)
+offset_left = 9.0
+offset_top = 689.0
+offset_right = 630.0
+offset_bottom = 1123.0
+theme_override_font_sizes/normal_font_size = 50
+bbcode_enabled = true
+text = "[center]PEASANTS ARE WEAK, BUT THEY WILL ALERT THE GUARDS UPON SEEING YOU. "
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="Slide2/Node2D"]
+modulate = Color(0, 1, 0.2509804, 1)
+offset_left = 634.0
+offset_top = 669.0
+offset_right = 1158.0
+offset_bottom = 1137.0
+theme_override_font_sizes/normal_font_size = 50
+bbcode_enabled = true
+text = "[center]GUARDS ARE QUITE DANGEROUS. AMBUSH THEM AND RUN AWAY ONCE SPOTTED!"
+
+[node name="TexSlide2P" type="Sprite2D" parent="Slide2"]
+position = Vector2(325.00003, 433)
+scale = Vector2(0.6457539, 0.6457539)
+texture = ExtResource("4_7bloo")
+
+[node name="TexSlide2G" type="Sprite2D" parent="Slide2"]
+position = Vector2(895, 421.75003)
+scale = Vector2(0.658, 0.6795)
+texture = ExtResource("4_rlm2d")
+
+[node name="Slide3" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TexSlide3" type="Sprite2D" parent="Slide3"]
+position = Vector2(570, 504.00006)
+scale = Vector2(0.7584874, 0.7584874)
+texture = ExtResource("3_uo1fs")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Slide3"]
+modulate = Color(0, 1, 0.2509804, 1)
+layout_mode = 0
+offset_left = 9.0
+offset_top = 19.0
+offset_right = 1152.0
+offset_bottom = 197.0
+theme_override_font_sizes/normal_font_size = 60
+bbcode_enabled = true
+text = "[center]PRO TIP : HUMAN FACES MAKE GREAT DISGUISES!"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="Slide3"]
+modulate = Color(0, 1, 0.2509804, 1)
+layout_mode = 0
+offset_left = 6.0
+offset_top = 1042.0
+offset_right = 1149.0
+offset_bottom = 1146.0
+theme_override_font_sizes/normal_font_size = 45
+bbcode_enabled = true
+text = "[center]USE THE MOUSE WHEEL TO CYCLE THROUGH MASKS"
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="Slide3"]
+modulate = Color(0, 1, 0.2509804, 1)
+layout_mode = 0
+offset_left = 6.0
+offset_top = 839.0
+offset_right = 1149.0
+offset_bottom = 1017.0
+theme_override_font_sizes/normal_font_size = 60
+bbcode_enabled = true
+text = "[center]JUST MAKE SURE YOUR LEFTOVERS AREN'T FOUND..."
+
+[node name="Slide4" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Slide4"]
+modulate = Color(0, 1, 0.2509804, 1)
+layout_mode = 0
+offset_left = 9.0
+offset_top = 87.0
+offset_right = 1152.0
+offset_bottom = 1145.0
+theme_override_font_sizes/normal_font_size = 60
+bbcode_enabled = true
+text = "[center]USE THE WASD KEYS TO MOVE.
+
+ONCE YOU'VE FOUND A TASTY LOOKING HUMAN YOU CAN KILL IT BY USING YOUR MOUSE OR THE SPACE KEY TO PERFORM A LUNGE 
+(THIS WILL BREAK YOUR DISGUISE)
+
+YOU SHOULDN'T BE TOO PICKY THOUGH. IF YOU DON'T EAT ENOUGH YOUR STOMACH MIGHT GIVE AWAY YOUR POSITION."
+
+[node name="Slide5" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Slide5"]
+modulate = Color(0, 1, 0.2509804, 1)
+layout_mode = 0
+offset_left = 6.0
+offset_top = 34.0
+offset_right = 1149.0
+offset_bottom = 1187.0
+theme_override_font_sizes/normal_font_size = 60
+bbcode_enabled = true
+text = "[center]ONE LAST THING!
+YOU MIGHT FIND ONE OF THESE ANGRY CREATURES:
+
+
+
+
+
+
+I'M NOT SURE WHAT THOSE ARE TO BE HONEST. THEY CAN SEE THROUGH YOUR DISGUISE AND ALSO TASTE VERY BLAND."
+
+[node name="TexSlide5" type="Sprite2D" parent="Slide5"]
+position = Vector2(564, 530)
+scale = Vector2(0.7984996, 0.7984996)
+texture = ExtResource("6_3j26a")
+
+[node name="Slide6" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TexSlide6" type="Sprite2D" parent="Slide6"]
+position = Vector2(606, 675)
+texture = ExtResource("7_x7a1n")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Slide6"]
+modulate = Color(0, 1, 0.2509804, 1)
+layout_mode = 0
+offset_left = 6.0
+offset_top = 50.0
+offset_right = 1149.0
+offset_bottom = 1187.0
+theme_override_font_sizes/normal_font_size = 100
+bbcode_enabled = true
+text = "[center]BON APPÉTIT!"
