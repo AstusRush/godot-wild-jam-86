@@ -56,6 +56,7 @@ offset_top = -127.00001
 offset_right = 106.83279
 offset_bottom = 22.163109
 rotation = 0.031121539
+mouse_filter = 2
 color = Color(0.95278174, 0.0008744395, 0.97249633, 1)
 
 [node name="ColorRect2" type="ColorRect" parent="PosOffset/SquashAnchor/SmoothToggle/Faces/Face0"]
@@ -65,6 +66,7 @@ offset_top = 12.970864
 offset_right = 291.9149
 offset_bottom = 101.78047
 rotation = 2.1055431
+mouse_filter = 2
 color = Color(0.95278174, 0.0008744395, 0.97249633, 1)
 
 [node name="ColorRect3" type="ColorRect" parent="PosOffset/SquashAnchor/SmoothToggle/Faces/Face0"]
@@ -74,6 +76,7 @@ offset_top = -29.000004
 offset_right = 192.13716
 offset_bottom = 59.809605
 rotation = 1.4742551
+mouse_filter = 2
 color = Color(0.95278174, 0.0008744395, 0.97249633, 1)
 
 [node name="Face1" type="Node2D" parent="PosOffset/SquashAnchor/SmoothToggle/Faces"]
@@ -90,6 +93,7 @@ offset_top = -126.86259
 offset_right = 109.85146
 offset_bottom = 22.30053
 rotation = 0.031121539
+mouse_filter = 2
 color = Color(0.95278174, 0.0008744395, 0.97249633, 1)
 
 [node name="ColorRect2" type="ColorRect" parent="PosOffset/SquashAnchor/SmoothToggle/Faces/Face1"]
@@ -99,6 +103,7 @@ offset_top = 12.970864
 offset_right = 266.10318
 offset_bottom = 101.78047
 rotation = 2.1055431
+mouse_filter = 2
 color = Color(0.95278174, 0.0008744395, 0.97249633, 1)
 
 [node name="ColorRect3" type="ColorRect" parent="PosOffset/SquashAnchor/SmoothToggle/Faces/Face1"]
@@ -108,6 +113,7 @@ offset_top = -29.000004
 offset_right = 162.95515
 offset_bottom = 59.809605
 rotation = 1.4742551
+mouse_filter = 2
 color = Color(0.95278174, 0.0008744395, 0.97249633, 1)
 
 [node name="Face2" type="Node2D" parent="PosOffset/SquashAnchor/SmoothToggle/Faces"]
@@ -124,6 +130,7 @@ offset_top = -165.80557
 offset_right = 171.59552
 offset_bottom = -15.088882
 rotation = 0.7981554
+mouse_filter = 2
 color = Color(0.95278174, 0.0008744395, 0.97249633, 1)
 
 [node name="ColorRect2" type="ColorRect" parent="PosOffset/SquashAnchor/SmoothToggle/Faces/Face2"]
@@ -133,6 +140,7 @@ offset_top = -10.37614
 offset_right = 283.24994
 offset_bottom = 78.43347
 rotation = 1.9435049
+mouse_filter = 2
 color = Color(0.95278174, 0.0008744395, 0.97249633, 1)
 
 [node name="ColorRect3" type="ColorRect" parent="PosOffset/SquashAnchor/SmoothToggle/Faces/Face2"]
@@ -142,6 +150,7 @@ offset_top = -64.850845
 offset_right = 121.69389
 offset_bottom = 23.958763
 rotation = 0.8302186
+mouse_filter = 2
 color = Color(0.95278174, 0.0008744395, 0.97249633, 1)
 
 [node name="Hair" type="Sprite2D" parent="PosOffset/SquashAnchor/SmoothToggle"]

@@ -49,6 +49,8 @@ func discoverPlayer():
 	
 
 func chase():
+	if isDead():
+		return
 	if type==Level.EnemyType.Guard:
 		var guardIdx = randi_range(0,0)
 		SoundSpawner.SpawnFromName("GuardGrunt"+str(guardIdx))
