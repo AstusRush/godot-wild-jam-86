@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://c2fketo4xojpn"]
+[gd_scene load_steps=28 format=3 uid="uid://c2fketo4xojpn"]
 
 [ext_resource type="PackedScene" uid="uid://cg7pjf54rwrq1" path="res://Scenes/player.tscn" id="1_ebmjs"]
 [ext_resource type="Script" uid="uid://dshkgbsarahv5" path="res://Scripts/GameCamera.gd" id="1_wowpa"]
@@ -18,7 +18,6 @@
 [ext_resource type="PackedScene" uid="uid://dkoupd5mv048d" path="res://Scenes/Layouts/Layout_0.tscn" id="10_o5yvi"]
 [ext_resource type="Script" uid="uid://dd3kah2hi2y2i" path="res://Scripts/MonsterBlob.gd" id="11_o5yvi"]
 [ext_resource type="Texture2D" uid="uid://b02wl1elcen5q" path="res://Sprites/Tex_MonsterBlobA.png" id="11_rku1e"]
-[ext_resource type="Shader" uid="uid://d26vf4r223xqm" path="res://Scenes/vignette.gdshader" id="11_vm72l"]
 [ext_resource type="Script" uid="uid://dlqa5hi2pax4c" path="res://Scripts/HidingVignette.gd" id="12_22asu"]
 [ext_resource type="PackedScene" uid="uid://1h7i2ahv5fwn" path="res://Scenes/PlayerMaskIndicator.tscn" id="13_7nbq1"]
 [ext_resource type="Texture2D" uid="uid://b7peplao0gatr" path="res://Sprites/Tex_MonsterBlobB.png" id="13_rfjv2"]
@@ -26,12 +25,7 @@
 [ext_resource type="Script" uid="uid://dmb542wdu05lw" path="res://Scripts/Stats.gd" id="15_nb51f"]
 [ext_resource type="Script" uid="uid://d32ri4dl0odrr" path="res://Library/VisualEffects/SquashAnchor.gd" id="16_fkdbe"]
 [ext_resource type="PackedScene" uid="uid://cs6ebdme1f3dv" path="res://Scenes/HostileAlarmIndicator.tscn" id="18_iivbl"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_22asu"]
-shader = ExtResource("11_vm72l")
-shader_parameter/b = 0.999999977648
-shader_parameter/maxA = 0.5999999865888
-shader_parameter/p = 2.89
+[ext_resource type="Texture2D" uid="uid://bebrebb0075mv" path="res://Sprites/Tex_Vignette.png" id="27_81klo"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1l0tm"]
 radius = 66.4906
@@ -284,18 +278,16 @@ colFillHealthy = Color(0, 1, 0.2509804, 1)
 iconSinMag = 10.0
 iconSinSpeed = 5.0
 
-[node name="HidingVignette" type="ColorRect" parent="Camera2D"]
-modulate = Color(0.16138157, 0.015231367, 0.13860077, 1)
+[node name="TexVignette" type="Sprite2D" parent="Camera2D"]
+modulate = Color(0.16, 0.016000003, 0.13600002, 1)
 z_index = 50
-material = SubResource("ShaderMaterial_22asu")
-offset_left = -640.0
-offset_top = -622.0
-offset_right = 680.0
-offset_bottom = 651.0
-mouse_filter = 2
+scale = Vector2(2, 2)
+texture = ExtResource("27_81klo")
 script = ExtResource("12_22asu")
-fadeInSpeed = 2.5
-fadeOutSpeed = 5.0
+fadeInSpeed = 3.0
+fadeOutSpeed = 11.0
+rotSpeed = 12.0
+maxA = 0.4
 
 [node name="Player" parent="." node_paths=PackedStringArray("heartHolder", "squash", "attackBox", "maskHolder", "monsterVisual", "humanVisual") instance=ExtResource("1_ebmjs")]
 collision_mask = 5
